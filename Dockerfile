@@ -9,7 +9,8 @@ RUN mkdir $JULIA_PATH \
 		| tar -xz -C $JULIA_PATH --strip-components 1 \
 	&& apt-get purge -y --auto-remove \
 		-o APT::AutoRemove::RecommendsImportant=false \
-		-o APT::AutoRemove::SuggestsImportant=false curl \
+		-o APT::AutoRemove::SuggestsImportant=false \
+		curl \
 	&& rm -rf /var/lib/apt/lists/*
 
 
