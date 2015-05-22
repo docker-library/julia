@@ -1,5 +1,9 @@
 FROM debian:jessie
 
+RUN apt-get update \
+	&& apt-get install -y --no-install-recommends ca-certificates git \
+	&& rm -rf /var/lib/apt/lists/*
+
 ENV JULIA_PATH /usr/local/julia
 ENV JULIA_VERSION 0.3.8
 
