@@ -17,8 +17,6 @@ RUN mkdir $JULIA_PATH \
 	&& curl -sSL "https://julialang.s3.amazonaws.com/bin/linux/x64/${JULIA_VERSION%[.-]*}/julia-${JULIA_VERSION}-linux-x86_64.tar.gz.asc" -o julia.tar.gz.asc \
 	&& gpg --verify julia.tar.gz.asc \
 	&& tar -xzf julia.tar.gz -C $JULIA_PATH --strip-components 1 \
-	&& apt-get purge -y --auto-remove \
-		curl \
 	&& rm -rf /var/lib/apt/lists/* julia.tar.gz*
 
 
