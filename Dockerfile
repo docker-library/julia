@@ -5,7 +5,7 @@ RUN apt-get update \
 	&& rm -rf /var/lib/apt/lists/*
 
 ENV JULIA_PATH /usr/local/julia
-ENV JULIA_VERSION 0.4.6
+ENV JULIA_VERSION 0.4.7
 
 RUN mkdir $JULIA_PATH \
 	&& apt-get update && apt-get install -y curl \
