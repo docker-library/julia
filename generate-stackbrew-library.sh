@@ -26,6 +26,39 @@ dirCommit() {
 	)
 }
 
+getArches() {
+	local repo="$1"; shift
+	local officialImagesUrl='https://github.com/docker-library/official-images/raw/master/library/'
+
+	eval "declare -g -A parentRepoToArches=( $(
+		find -name 'Dockerfile' -exec awk '
+				toupper($1) == "FROM" && $2 !~ /^('"$repo"'|scratch|microsoft\/[^:]+)(:|$)/ {
+					print "'"$officialImagesUrl"'" $2
+				}
+			' '{}' + \
+			| sort -u \
+			| xargs bashbrew cat --format '[{{ .RepoName }}:{{ .TagName }}]="{{ join " " .TagEntry.Architectures }}"'
+	) )"
+}
+getArches 'julia'
+
+source '.architectures-lib'
+
+parentArches() {
+	local version="$1"; shift # "1.8", etc
+
+	local parent="$(awk 'toupper($1) == "FROM" { print $2 }' "$version/Dockerfile")"
+	local parentArches="${parentRepoToArches[$parent]:-}"
+
+	local arches=()
+	for arch in $parentArches; do
+		if hasBashbrewArch "$version" "$arch"; then
+			arches+=( "$arch" )
+		fi
+	done
+	echo "${arches[*]}"
+}
+
 cat <<-EOH
 # this file is generated via https://github.com/docker-library/julia/blob/$(fileCommit "$self")/$self
 
@@ -55,5 +88,6 @@ versionAliases+=( $fullVersion latest )
 echo
 cat <<-EOE
 	Tags: $(join ', ' "${versionAliases[@]}")
+	Architectures: $(join ', ' $(parentArches .))
 	GitCommit: $commit
 EOE
