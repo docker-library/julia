@@ -12,7 +12,7 @@ sed_escape_rhs() {
 
 for version in '.'; do
 	pattern='.*/julia-([0-9]+\.[0-9]+\.[0-9]+)-linux-x86_64\.tar\.gz.*'
-	fullVersion="$(curl -fsSL 'https://julialang.org/downloads/' | sed -rn "s!${pattern}!\1!gp")"
+	fullVersion="$(curl -fsSL 'https://julialang.org/downloads/' | sed -rn "s!${pattern}!\1!gp" | sort -ruV | head -1)"
 	if [ -z "$fullVersion" ]; then
 		echo >&2 "error: failed to determine latest release for '$version'"
 		exit 1
