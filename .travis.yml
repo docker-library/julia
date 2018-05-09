@@ -2,24 +2,24 @@ language: bash
 services: docker
 
 env:
-  - ARCH=
-  - ARCH=i386
+  - VARIANT=jessie ARCH=
+  - VARIANT=jessie ARCH=i386
 
 install:
   - git clone https://github.com/docker-library/official-images.git ~/official-images
 
 before_script:
   - env | sort
-  - image='julia'
+  - image="julia:$VARIANT"
   - |
     if [ -n "$ARCH" ]; then
-        from="$(awk '$1 == toupper("FROM") { print $2 }' Dockerfile)"
+        from="$(awk '$1 == toupper("FROM") { print $2 }' "$VARIANT/Dockerfile")"
         docker pull "$ARCH/$from"
         docker tag "$ARCH/$from" "$from"
     fi
 
 script:
-  - travis_retry docker build -t "$image" .
+  - travis_retry docker build -t "$image" "$VARIANT"
   - ~/official-images/test/run.sh "$image"
 
 after_script:
