@@ -40,7 +40,7 @@ for version in '.'; do
 	sed -r \
 		-e 's!%%JULIA_VERSION%%!'"$fullVersion"'!g' \
 		-e 's!%%ARCH-CASE%%!'"$(sed_escape_rhs "$linuxArchCase")"'!g' \
-		Dockerfile-debian.template > "$version/Dockerfile"
+		Dockerfile-debian.template > "$version/jessie/Dockerfile"
 
 	winSha256="$(echo "$sha256s" | grep "*julia-${fullVersion}-win64.exe$" | cut -d' ' -f1)"
 	for winVer in 1709 ltsc2016; do

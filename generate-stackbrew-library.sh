@@ -1,5 +1,5 @@
-#!/bin/bash
-set -eu
+#!/usr/bin/env bash
+set -Eeuo pipefail
 
 self="$(basename "$BASH_SOURCE")"
 cd "$(dirname "$(readlink -f "$BASH_SOURCE")")"
@@ -46,8 +46,9 @@ source '.architectures-lib'
 
 parentArches() {
 	local version="$1"; shift # "1.8", etc
+	local dir="$1"; shift # "1.8/windows/windowsservercore-ltsc2016"
 
-	local parent="$(awk 'toupper($1) == "FROM" { print $2 }' "$version/Dockerfile")"
+	local parent="$(awk 'toupper($1) == "FROM" { print $2 }' "$dir/Dockerfile")"
 	local parentArches="${parentRepoToArches[$parent]:-}"
 
 	local arches=()
@@ -74,20 +75,51 @@ join() {
 	echo "${out#$sep}"
 }
 
-commit="$(dirCommit .)"
+for version in .; do
+	for v in \
+		jessie \
+		windows/windowsservercore-{ltsc2016,1709} \
+	; do
+		dir="$version/$v"
+		dir="${dir#./}"
+		variant="$(basename "$v")"
 
-fullVersion="$(git show "$commit":Dockerfile | awk '$1 == "ENV" && $2 == "JULIA_VERSION" { print $3; exit }')"
+		[ -f "$dir/Dockerfile" ] || continue
 
-versionAliases=()
-while [ "${fullVersion%.*}" != "$fullVersion" ]; do
-	versionAliases+=( $fullVersion )
-	fullVersion="${fullVersion%.*}"
+		commit="$(dirCommit "$dir")"
+
+		fullVersion="$(git show "$commit":"$dir/Dockerfile" | awk '$1 == "ENV" && $2 == "JULIA_VERSION" { print $3; exit }')"
+
+		versionAliases=()
+		while [ "${fullVersion%.*}" != "$fullVersion" ]; do
+			versionAliases+=( $fullVersion )
+			fullVersion="${fullVersion%.*}"
+		done
+		versionAliases+=( $fullVersion latest )
+
+		variantAliases=( "${versionAliases[@]/%/-$variant}" )
+		variantAliases=( "${variantAliases[@]//latest-/}" )
+
+		sharedTags=()
+		if [ "$variant" = 'jessie' ] || [[ "$variant" == 'windowsservercore'* ]]; then
+			sharedTags+=( "${versionAliases[@]}" )
+		fi
+
+		case "$v" in
+			windows/*) variantArches='windows-amd64' ;;
+			*) variantArches="$(parentArches "$version" "$dir")" ;;
+		esac
+
+		echo
+		echo "Tags: $(join ', ' "${variantAliases[@]}")"
+		if [ "${#sharedTags[@]}" -gt 0 ]; then
+			echo "SharedTags: $(join ', ' "${sharedTags[@]}")"
+		fi
+		cat <<-EOE
+			Architectures: $(join ', ' $variantArches)
+			GitCommit: $commit
+			Directory: $dir
+		EOE
+		[[ "$v" == windows/* ]] && echo "Constraints: $variant"
+	done
 done
-versionAliases+=( $fullVersion latest )
-
-echo
-cat <<-EOE
-	Tags: $(join ', ' "${versionAliases[@]}")
-	Architectures: $(join ', ' $(parentArches .))
-	GitCommit: $commit
-EOE
