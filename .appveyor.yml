@@ -1,0 +1,25 @@
+version: build-{build}.{branch}
+image: Visual Studio 2017
+
+environment:
+  matrix:
+    - version: .
+      variant: windowsservercore-ltsc2016
+
+install:
+  - ps: |
+      [Environment]::SetEnvironmentVariable('dockerImage', ('julia:{0}' -f 'latest'), [EnvironmentVariableTarget]::Process);
+      [Environment]::SetEnvironmentVariable('buildDirectory', ('{0}/windows/{1}' -f $env:version, $env:variant), [EnvironmentVariableTarget]::Process);
+
+build_script:
+  - cmd: appveyor-retry docker build --pull -t %dockerImage% %buildDirectory%
+
+after_build:
+  - ps: docker images
+
+test_script:
+  - cmd: docker run --rm %dockerImage% julia --version
+# https://github.com/docker-library/official-images/blob/1f45da385fb37c7469edbcf519327db0e5fb7aab/test/tests/julia-hello-world/container.jl
+  - cmd: docker run --rm %dockerImage% julia --eval 'println("Hello World!")'
+  - cmd: docker run --rm %dockerImage% julia --eval 'download("https://google.com")'
+  - cmd: docker run --rm %dockerImage% julia --eval 'Pkg.add("JSON")'
