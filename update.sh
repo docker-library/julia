@@ -10,6 +10,8 @@ sed_escape_rhs() {
 	echo "$@" | sed -e 's/[\/&]/\\&/g' | sed -e ':a;N;$!ba;s/\n/\\n/g'
 }
 
+travisEnv=
+appveyorEnv=
 for version in '.'; do
 	pattern='.*/julia-([0-9]+\.[0-9]+\.[0-9]+)-linux-x86_64\.tar\.gz.*'
 	fullVersion="$(curl -fsSL 'https://julialang.org/downloads/' | sed -rn "s!${pattern}!\1!gp" | sort -ruV | head -1)"
@@ -35,20 +37,47 @@ for version in '.'; do
 	linuxArchCase+=$'\t\t''*) echo >&2 "error: current architecture ($dpkgArch) does not have a corresponding Julia binary release"; exit 1 ;; '$'\\\n'
 	linuxArchCase+=$'\t''esac'
 
+	winSha256="$(echo "$sha256s" | grep "*julia-${fullVersion}-win64.exe$" | cut -d' ' -f1)"
+
 	echo "$version: $fullVersion"
 
-	sed -r \
-		-e 's!%%JULIA_VERSION%%!'"$fullVersion"'!g' \
-		-e 's!%%ARCH-CASE%%!'"$(sed_escape_rhs "$linuxArchCase")"'!g' \
-		Dockerfile-debian.template > "$version/jessie/Dockerfile"
+	for v in \
+		{jessie,stretch} \
+		windows/windowsservercore-{1709,ltsc2016} \
+	; do
+		dir="$version/$v"
+		variant="$(basename "$v")"
 
-	winSha256="$(echo "$sha256s" | grep "*julia-${fullVersion}-win64.exe$" | cut -d' ' -f1)"
-	for winVer in 1709 ltsc2016; do
-		mkdir -p "$version/windows/windowsservercore-$winVer"
+		mkdir -p "$dir"
+
+		case "$variant" in
+			windowsservercore-*) template='windowsservercore'; tag="${variant#*-}" ;;
+			*) template='debian'; tag="$variant" ;;
+		esac
+
 		sed -r \
 			-e 's!%%JULIA_VERSION%%!'"$fullVersion"'!g' \
-			-e 's!%%WINDOWS_VERSION%%!'"$winVer"'!g' \
+			-e 's!%%TAG%%!'"$tag"'!g' \
 			-e 's!%%JULIA_WINDOWS_SHA256%%!'"$winSha256"'!g' \
-			Dockerfile-windowsservercore.template > "$version/windows/windowsservercore-$winVer/Dockerfile"
+			-e 's!%%ARCH-CASE%%!'"$(sed_escape_rhs "$linuxArchCase")"'!g' \
+			"Dockerfile-$template.template" > "$dir/Dockerfile"
+
+		case "$v" in
+			windows/*-1709) ;; # no AppVeyor support for 1709 yet: https://github.com/appveyor/ci/issues/1885
+			windows/*)
+				appveyorEnv='\n    - version: '"$version"'\n      variant: '"$variant$appveyorEnv"
+				;;
+			*)
+				for arch in i386 ''; do
+					travisEnv='\n'"  - VERSION=$version VARIANT=$v ARCH=$arch$travisEnv"
+				done
+				;;
+		esac
 	done
 done
+
+travis="$(awk -v 'RS=\n\n' '$1 == "env:" { $0 = "env:'"$travisEnv"'" } { printf "%s%s", $0, RS }' .travis.yml)"
+echo "$travis" > .travis.yml
+
+appveyor="$(awk -v 'RS=\n\n' '$1 == "environment:" { $0 = "environment:\n  matrix:'"$appveyorEnv"'" } { printf "%s%s", $0, RS }' .appveyor.yml)"
+echo "$appveyor" > .appveyor.yml

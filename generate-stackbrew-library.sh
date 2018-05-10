@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -Eeuo pipefail
 
+defaultDebianVariant='stretch'
+
 self="$(basename "$BASH_SOURCE")"
 cd "$(dirname "$(readlink -f "$BASH_SOURCE")")"
 
@@ -77,7 +79,7 @@ join() {
 
 for version in .; do
 	for v in \
-		jessie \
+		{stretch,jessie} \
 		windows/windowsservercore-{ltsc2016,1709} \
 	; do
 		dir="$version/$v"
@@ -101,7 +103,7 @@ for version in .; do
 		variantAliases=( "${variantAliases[@]//latest-/}" )
 
 		sharedTags=()
-		if [ "$variant" = 'jessie' ] || [[ "$variant" == 'windowsservercore'* ]]; then
+		if [ "$variant" = "$defaultDebianVariant" ] || [[ "$variant" == 'windowsservercore'* ]]; then
 			sharedTags+=( "${versionAliases[@]}" )
 		fi
 
