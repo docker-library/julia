@@ -27,7 +27,7 @@ for version in '.'; do
 	for dpkgArch in $(dpkgArches "$version"); do
 		tarArch="$(dpkgToJuliaTarArch "$version" "$dpkgArch")"
 		dirArch="$(dpkgToJuliaDirArch "$version" "$dpkgArch")"
-		sha256="$(echo "$sha256s" | grep "*julia-${fullVersion}-linux-${tarArch}.tar.gz$" | cut -d' ' -f1)"
+		sha256="$(echo "$sha256s" | grep "julia-${fullVersion}-linux-${tarArch}.tar.gz$" | cut -d' ' -f1)"
 		if [ -z "$sha256" ]; then
 			echo >&2 "error: cannot find sha256 for $fullVersion on arch $tarArch / $dirArch ($dpkgArch)"
 			exit 1
@@ -37,7 +37,7 @@ for version in '.'; do
 	linuxArchCase+=$'\t\t''*) echo >&2 "error: current architecture ($dpkgArch) does not have a corresponding Julia binary release"; exit 1 ;; '$'\\\n'
 	linuxArchCase+=$'\t''esac'
 
-	winSha256="$(echo "$sha256s" | grep "*julia-${fullVersion}-win64.exe$" | cut -d' ' -f1)"
+	winSha256="$(echo "$sha256s" | grep "julia-${fullVersion}-win64.exe$" | cut -d' ' -f1)"
 
 	echo "$version: $fullVersion"
 
