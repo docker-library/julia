@@ -3,6 +3,12 @@ set -Eeuo pipefail
 
 cd "$(dirname "$(readlink -f "$BASH_SOURCE")")"
 
+versions=( "$@" )
+if [ ${#versions[@]} -eq 0 ]; then
+	versions=( */ )
+fi
+versions=( "${versions[@]%/}" )
+
 source '.architectures-lib'
 
 # see http://stackoverflow.com/a/2705678/433558
@@ -10,11 +16,26 @@ sed_escape_rhs() {
 	echo "$@" | sed -e 's/[\/&]/\\&/g' | sed -e ':a;N;$!ba;s/\n/\\n/g'
 }
 
+rcRegex='-(pre[.])?(alpha|beta|rc)[0-9]*'
+
+pattern='.*/julia-([0-9]+\.[0-9]+\.[0-9]+('"$rcRegex"')?)-linux-x86_64\.tar\.gz.*'
+allVersions="$(
+	curl -fsSL 'https://julialang.org/downloads/' \
+		| sed -rn "s!${pattern}!\1!gp" \
+		| sort -ruV
+)"
+
 travisEnv=
 appveyorEnv=
-for version in '.'; do
-	pattern='.*/julia-([0-9]+\.[0-9]+\.[0-9]+)-linux-x86_64\.tar\.gz.*'
-	fullVersion="$(curl -fsSL 'https://julialang.org/downloads/' | sed -rn "s!${pattern}!\1!gp" | sort -ruV | head -1)"
+for version in "${versions[@]}"; do
+	rcVersion="${version%-rc}"
+	rcGrepV='-v'
+	if [ "$rcVersion" != "$version" ]; then
+		rcGrepV=
+	fi
+	rcGrepV+=' -E'
+
+	fullVersion="$(echo "$allVersions" | grep -E "^${rcVersion}([.-]|$)" | grep $rcGrepV -- "$rcRegex" | head -1)"
 	if [ -z "$fullVersion" ]; then
 		echo >&2 "error: failed to determine latest release for '$version'"
 		exit 1
@@ -50,7 +71,7 @@ for version in '.'; do
 		dir="$version/$v"
 		variant="$(basename "$v")"
 
-		mkdir -p "$dir"
+		[ -d "$dir" ] || continue
 
 		case "$variant" in
 			windowsservercore-*) template='windowsservercore'; tag="${variant#*-}" ;;

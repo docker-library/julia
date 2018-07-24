@@ -1,10 +1,19 @@
 #!/usr/bin/env bash
 set -Eeuo pipefail
 
+declare -A aliases=(
+	[0]='latest'
+)
 defaultDebianVariant='stretch'
 
 self="$(basename "$BASH_SOURCE")"
 cd "$(dirname "$(readlink -f "$BASH_SOURCE")")"
+
+versions=( */ )
+versions=( "${versions[@]%/}" )
+
+# sort version numbers with highest first
+IFS=$'\n'; versions=( $(echo "${versions[*]}" | sort -rV) ); unset IFS
 
 # get the most recent commit which modified any of "$@"
 fileCommit() {
@@ -77,7 +86,7 @@ join() {
 	echo "${out#$sep}"
 }
 
-for version in .; do
+for version in "${versions[@]}"; do
 	for v in \
 		{stretch,jessie} \
 		windows/windowsservercore-{ltsc2016,1709} \
@@ -93,11 +102,14 @@ for version in .; do
 		fullVersion="$(git show "$commit":"$dir/Dockerfile" | awk '$1 == "ENV" && $2 == "JULIA_VERSION" { print $3; exit }')"
 
 		versionAliases=()
-		while [ "${fullVersion%.*}" != "$fullVersion" ]; do
+		while [ "$fullVersion" != "$version" -a "${fullVersion%[.-]*}" != "$fullVersion" ]; do
 			versionAliases+=( $fullVersion )
-			fullVersion="${fullVersion%.*}"
+			fullVersion="${fullVersion%[.-]*}"
 		done
-		versionAliases+=( $fullVersion latest )
+		versionAliases+=(
+			$version
+			${aliases[$version]:-}
+		)
 
 		variantAliases=( "${versionAliases[@]/%/-$variant}" )
 		variantAliases=( "${variantAliases[@]//latest-/}" )

@@ -2,10 +2,12 @@ language: bash
 services: docker
 
 env:
-  - VERSION=. VARIANT=stretch ARCH=
-  - VERSION=. VARIANT=stretch ARCH=i386
-  - VERSION=. VARIANT=jessie ARCH=
-  - VERSION=. VARIANT=jessie ARCH=i386
+  - VERSION=0-rc VARIANT=stretch ARCH=
+  - VERSION=0-rc VARIANT=stretch ARCH=i386
+  - VERSION=0 VARIANT=stretch ARCH=
+  - VERSION=0 VARIANT=stretch ARCH=i386
+  - VERSION=0 VARIANT=jessie ARCH=
+  - VERSION=0 VARIANT=jessie ARCH=i386
 
 install:
   - git clone https://github.com/docker-library/official-images.git ~/official-images
