@@ -55,7 +55,7 @@ parentArches() {
 
 	local arches=()
 	for arch in $parentArches; do
-		if hasBashbrewArch "$version" "$arch"; then
+		if hasBashbrewArch "$version" "$arch" && grep -qE "^# $arch\$" "$dir/Dockerfile"; then
 			arches+=( "$arch" )
 		fi
 	done

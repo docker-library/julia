@@ -17,6 +17,12 @@ hasBashbrewArch() {
 	_awkArch "$version" 'BEGIN { exitCode = 1 } $1 == bashbrewArch { exitCode = 0 } END { exit exitCode }' -v bashbrewArch="$bashbrewArch"
 }
 
+dpkgToBashbrewArch() {
+	local version="$1"; shift
+	local dpkgArch="$1"; shift
+	_awkArch "$version" '$2 == dpkgArch { print $1; exit }' -v dpkgArch="$dpkgArch"
+}
+
 dpkgToJuliaTarArch() {
 	local version="$1"; shift
 	local dpkgArch="$1"; shift

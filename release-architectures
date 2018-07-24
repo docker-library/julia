@@ -5,6 +5,4 @@ amd64   amd64   x86_64  x64
 arm32v7 armhf   armv7l  armv7l
 arm64v8 arm64   aarch64 aarch64
 i386    i386    i686    x86
-
-# ppc64le appears to be "0.6.0-rc3"-only as of 2017-08-24
-#ppc64le ppc64el ppc64le ppc64le
+ppc64le ppc64el ppc64le ppc64le
