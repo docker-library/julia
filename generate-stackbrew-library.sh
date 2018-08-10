@@ -2,7 +2,7 @@
 set -Eeuo pipefail
 
 declare -A aliases=(
-	[1.0]='latest'
+	[1.0]='1 latest'
 )
 defaultDebianVariant='stretch'
 
