@@ -66,7 +66,7 @@ for version in "${versions[@]}"; do
 
 	for v in \
 		{jessie,stretch} \
-		windows/windowsservercore-{1709,ltsc2016} \
+		windows/windowsservercore-{1803,1709,ltsc2016} \
 	; do
 		dir="$version/$v"
 		variant="$(basename "$v")"
@@ -86,7 +86,7 @@ for version in "${versions[@]}"; do
 			"Dockerfile-$template.template" > "$dir/Dockerfile"
 
 		case "$v" in
-			windows/*-1709) ;; # no AppVeyor support for 1709 yet: https://github.com/appveyor/ci/issues/1885
+			windows/*-1709 | windows/*-1803 ) ;; # no AppVeyor support for 1709+ yet: https://github.com/appveyor/ci/issues/1885
 			windows/*)
 				appveyorEnv='\n    - version: '"$version"'\n      variant: '"$variant$appveyorEnv"
 				;;

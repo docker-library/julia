@@ -2,7 +2,7 @@
 set -Eeuo pipefail
 
 declare -A aliases=(
-	[0]='latest'
+	[1.0]='latest'
 )
 defaultDebianVariant='stretch'
 
@@ -89,7 +89,7 @@ join() {
 for version in "${versions[@]}"; do
 	for v in \
 		{stretch,jessie} \
-		windows/windowsservercore-{ltsc2016,1709} \
+		windows/windowsservercore-{ltsc2016,1709,1803} \
 	; do
 		dir="$version/$v"
 		dir="${dir#./}"
