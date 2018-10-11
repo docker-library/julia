@@ -1,22 +1,32 @@
 language: bash
 services: docker
 
-env:
-  - VERSION=1.0 VARIANT=stretch ARCH=
-  - VERSION=1.0 VARIANT=stretch ARCH=i386
-  - VERSION=0 VARIANT=stretch ARCH=
-  - VERSION=0 VARIANT=stretch ARCH=i386
-  - VERSION=0 VARIANT=jessie ARCH=
-  - VERSION=0 VARIANT=jessie ARCH=i386
+matrix:
+  include:
+    - os: linux
+      env: VERSION=1.0 VARIANT=stretch ARCH=
+    - os: linux
+      env: VERSION=1.0 VARIANT=stretch ARCH=i386
+    - os: windows
+      dist: 1803-containers
+      env: VERSION=1.0 VARIANT=windows/windowsservercore-1803
+    - os: linux
+      env: VERSION=0 VARIANT=stretch ARCH=
+    - os: linux
+      env: VERSION=0 VARIANT=stretch ARCH=i386
+    - os: linux
+      env: VERSION=0 VARIANT=jessie ARCH=
+    - os: linux
+      env: VERSION=0 VARIANT=jessie ARCH=i386
 
 install:
   - git clone https://github.com/docker-library/official-images.git ~/official-images
+  - if [ "$TRAVIS_OS_NAME" = 'linux' ]; then wget -qO- 'https://github.com/tianon/pgp-happy-eyeballs/raw/master/hack-my-builds.sh' | bash; fi
 
 before_script:
   - env | sort
-  - wget -qO- 'https://github.com/tianon/pgp-happy-eyeballs/raw/master/hack-my-builds.sh' | bash
   - cd "$VERSION/$VARIANT"
-  - image="julia:$VARIANT"
+  - image="julia:$VERSION-$(basename "$VARIANT")"
   - |
     if [ -n "$ARCH" ]; then
         from="$(awk '$1 == toupper("FROM") { print $2 }' Dockerfile)"
@@ -30,7 +40,15 @@ script:
       set -Eeuo pipefail
       set -x
       docker build -t "$image" .
-      ~/official-images/test/run.sh "$image"
+      if [ "$TRAVIS_OS_NAME" = 'windows' ]; then
+        # TODO make the tests run successfully on Windows too!
+        docker run --rm "$image" julia --version
+        docker run --rm "$image" julia --eval 'println("Hello World!")'
+        docker run --rm "$image" julia --eval 'download("https://google.com")'
+        docker run --rm "$image" julia --eval 'using Pkg; Pkg.add("JSON")'
+      else
+        ~/official-images/test/run.sh "$image"
+      fi
     )
 
 after_script:
