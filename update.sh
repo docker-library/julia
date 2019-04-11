@@ -65,7 +65,7 @@ for version in "${versions[@]}"; do
 	echo "$version: $fullVersion"
 
 	for v in \
-		windows/windowsservercore-{ltsc2016,1709,1803} \
+		windows/windowsservercore-{ltsc2016,1803} \
 		{jessie,stretch} \
 	; do
 		dir="$version/$v"
@@ -89,7 +89,6 @@ for version in "${versions[@]}"; do
 			windows/*-1803)
 				travisEnv="\n    - os: windows\n      dist: 1803-containers\n      env: VERSION=$version VARIANT=$v$travisEnv"
 				;;
-			windows/*-1709) ;; # no AppVeyor or Travis support for 1709: https://github.com/appveyor/ci/issues/1885
 			windows/*)
 				appveyorEnv='\n    - version: '"$version"'\n      variant: '"$variant$appveyorEnv"
 				;;
