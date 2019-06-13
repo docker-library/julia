@@ -2,27 +2,25 @@
 
 ## Maintained by: [the Docker Community](https://github.com/docker-library/julia)
 
-This is the Git repo of the [Docker "Official Image"](https://docs.docker.com/docker-hub/official_repos/) for [julia](https://hub.docker.com/_/julia/) (not to be confused with any official julia image provided by julia upstream). See [the Docker Hub page](https://hub.docker.com/_/julia/) for the full readme on how to use this Docker image and for information regarding contributing and issues.
+This is the Git repo of the [Docker "Official Image"](https://github.com/docker-library/official-images#what-are-official-images) for [`julia`](https://hub.docker.com/_/julia/) (not to be confused with any official `julia` image provided by `julia` upstream). See [the Docker Hub page](https://hub.docker.com/_/julia/) for the full readme on how to use this Docker image and for information regarding contributing and issues.
 
-The [full description from Docker Hub](https://hub.docker.com/_/julia/) is generated over in [docker-library/docs](https://github.com/docker-library/docs), specifically in [docker-library/docs/julia](https://github.com/docker-library/docs/tree/master/julia).
+The [full image description on Docker Hub](https://hub.docker.com/_/julia/) is generated/maintained over in [the docker-library/docs repository](https://github.com/docker-library/docs), specifically in [the `julia` directory](https://github.com/docker-library/docs/tree/master/julia).
 
 ## See a change merged here that doesn't show up on Docker Hub yet?
 
-Check [the "library/julia" manifest file in the docker-library/official-images repo](https://github.com/docker-library/official-images/blob/master/library/julia), especially [PRs with the "library/julia" label on that repo](https://github.com/docker-library/official-images/labels/library%2Fjulia).
+For more information about the full official images change lifecycle, see [the "An image's source changed in Git, now what?" FAQ entry](https://github.com/docker-library/faq#an-images-source-changed-in-git-now-what).
 
-For more information about the official images process, see the [docker-library/official-images readme](https://github.com/docker-library/official-images/blob/master/README.md).
+For outstanding `julia` image PRs, check [PRs with the "library/julia" label on the official-images repository](https://github.com/docker-library/official-images/labels/library%2Fjulia). For the current "source of truth" for [`julia`](https://hub.docker.com/_/julia/), see [the `library/julia` file in the official-images repository](https://github.com/docker-library/official-images/blob/master/library/julia).
 
 ---
 
--	[Travis CI:  
-	![build status badge](https://img.shields.io/travis/docker-library/julia/master.svg)](https://travis-ci.org/docker-library/julia/branches)
--	[AppVeyor (Windows):  
-	![build status badge](https://ci.appveyor.com/api/projects/status/github/docker-library/julia?branch=master&svg=true)](https://ci.appveyor.com/project/docker-library/julia)
--	[Automated `update.sh`:  
-	![build status badge](https://doi-janky.infosiftr.net/job/update.sh/job/julia/badge/icon)](https://doi-janky.infosiftr.net/job/update.sh/job/julia)
+-	[![build status badge](https://img.shields.io/travis/docker-library/julia/master.svg?label=Travis%20CI)](https://travis-ci.org/docker-library/julia/branches)
+-	[![build status badge](https://img.shields.io/appveyor/ci/docker-library/julia/master.svg?label=AppVeyor)](https://ci.appveyor.com/project/docker-library/julia)
+-	[![build status badge](https://img.shields.io/jenkins/s/https/doi-janky.infosiftr.net/job/update.sh/job/julia.svg?label=Automated%20update.sh)](https://doi-janky.infosiftr.net/job/update.sh/job/julia)
 
 | Build | Status | Badges | (per-arch) |
 |:-:|:-:|:-:|:-:|
-| [`amd64`<br />![build status badge](https://doi-janky.infosiftr.net/job/multiarch/job/amd64/job/julia/badge/icon)](https://doi-janky.infosiftr.net/job/multiarch/job/amd64/job/julia) | [`i386`<br />![build status badge](https://doi-janky.infosiftr.net/job/multiarch/job/i386/job/julia/badge/icon)](https://doi-janky.infosiftr.net/job/multiarch/job/i386/job/julia) | [`windows-amd64`<br />![build status badge](https://doi-janky.infosiftr.net/job/multiarch/job/windows-amd64/job/julia/badge/icon)](https://doi-janky.infosiftr.net/job/multiarch/job/windows-amd64/job/julia) |
+| [![amd64 build status badge](https://img.shields.io/jenkins/s/https/doi-janky.infosiftr.net/job/multiarch/job/amd64/job/julia.svg?label=amd64)](https://doi-janky.infosiftr.net/job/multiarch/job/amd64/job/julia) | [![arm32v7 build status badge](https://img.shields.io/jenkins/s/https/doi-janky.infosiftr.net/job/multiarch/job/arm32v7/job/julia.svg?label=arm32v7)](https://doi-janky.infosiftr.net/job/multiarch/job/arm32v7/job/julia) | [![arm64v8 build status badge](https://img.shields.io/jenkins/s/https/doi-janky.infosiftr.net/job/multiarch/job/arm64v8/job/julia.svg?label=arm64v8)](https://doi-janky.infosiftr.net/job/multiarch/job/arm64v8/job/julia) | [![i386 build status badge](https://img.shields.io/jenkins/s/https/doi-janky.infosiftr.net/job/multiarch/job/i386/job/julia.svg?label=i386)](https://doi-janky.infosiftr.net/job/multiarch/job/i386/job/julia) |
+| [![windows-amd64 build status badge](https://img.shields.io/jenkins/s/https/doi-janky.infosiftr.net/job/multiarch/job/windows-amd64/job/julia.svg?label=windows-amd64)](https://doi-janky.infosiftr.net/job/multiarch/job/windows-amd64/job/julia) |
 
 <!-- THIS FILE IS GENERATED BY https://github.com/docker-library/docs/blob/master/generate-repo-stub-readme.sh -->
