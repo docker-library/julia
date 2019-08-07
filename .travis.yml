@@ -4,12 +4,20 @@ services: docker
 matrix:
   include:
     - os: linux
+      env: VERSION=1.1 VARIANT=buster ARCH=
+    - os: linux
+      env: VERSION=1.1 VARIANT=buster ARCH=i386
+    - os: linux
       env: VERSION=1.1 VARIANT=stretch ARCH=
     - os: linux
       env: VERSION=1.1 VARIANT=stretch ARCH=i386
     - os: windows
       dist: 1803-containers
       env: VERSION=1.1 VARIANT=windows/windowsservercore-1803
+    - os: linux
+      env: VERSION=1.0 VARIANT=buster ARCH=
+    - os: linux
+      env: VERSION=1.0 VARIANT=buster ARCH=i386
     - os: linux
       env: VERSION=1.0 VARIANT=stretch ARCH=
     - os: linux
