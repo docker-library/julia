@@ -4,7 +4,7 @@ set -Eeuo pipefail
 declare -A aliases=(
 	[1.1]='1 latest'
 )
-defaultDebianVariant='stretch'
+defaultDebianVariant='buster'
 
 self="$(basename "$BASH_SOURCE")"
 cd "$(dirname "$(readlink -f "$BASH_SOURCE")")"
@@ -88,7 +88,7 @@ join() {
 
 for version in "${versions[@]}"; do
 	for v in \
-		{stretch,jessie} \
+		{buster,stretch} \
 		windows/windowsservercore-{ltsc2016,1803} \
 	; do
 		dir="$version/$v"

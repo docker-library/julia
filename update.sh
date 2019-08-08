@@ -11,7 +11,7 @@ versions=( "${versions[@]%/}" )
 
 source '.architectures-lib'
 
-# see http://stackoverflow.com/a/2705678/433558
+# see https://stackoverflow.com/a/2705678/433558
 sed_escape_rhs() {
 	echo "$@" | sed -e 's/[\/&]/\\&/g' | sed -e ':a;N;$!ba;s/\n/\\n/g'
 }
@@ -66,7 +66,7 @@ for version in "${versions[@]}"; do
 
 	for v in \
 		windows/windowsservercore-{ltsc2016,1803} \
-		{jessie,stretch} \
+		{stretch,buster} \
 	; do
 		dir="$version/$v"
 		variant="$(basename "$v")"
@@ -75,7 +75,8 @@ for version in "${versions[@]}"; do
 
 		case "$variant" in
 			windowsservercore-*) template='windowsservercore'; tag="${variant#*-}" ;;
-			*) template='debian'; tag="$variant" ;;
+			stretch) template='debian'; tag="${variant}" ;;
+			*) template='debian'; tag="${variant}-slim" ;;
 		esac
 
 		sed -r \
