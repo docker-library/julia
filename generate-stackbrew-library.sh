@@ -2,7 +2,7 @@
 set -Eeuo pipefail
 
 declare -A aliases=(
-	[1.1]='1 latest'
+	[1.2]='1 latest'
 )
 defaultDebianVariant='buster'
 
