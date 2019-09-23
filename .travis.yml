@@ -7,6 +7,10 @@ matrix:
       env: VERSION=1.3-rc VARIANT=buster ARCH=
     - os: linux
       env: VERSION=1.3-rc VARIANT=buster ARCH=i386
+    - os: linux
+      env: VERSION=1.3-rc VARIANT=stretch ARCH=
+    - os: linux
+      env: VERSION=1.3-rc VARIANT=stretch ARCH=i386
     - os: windows
       dist: 1803-containers
       env: VERSION=1.3-rc VARIANT=windows/windowsservercore-1803
@@ -14,6 +18,10 @@ matrix:
       env: VERSION=1.2 VARIANT=buster ARCH=
     - os: linux
       env: VERSION=1.2 VARIANT=buster ARCH=i386
+    - os: linux
+      env: VERSION=1.2 VARIANT=stretch ARCH=
+    - os: linux
+      env: VERSION=1.2 VARIANT=stretch ARCH=i386
     - os: windows
       dist: 1803-containers
       env: VERSION=1.2 VARIANT=windows/windowsservercore-1803
