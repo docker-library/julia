@@ -75,9 +75,13 @@ for version in "${versions[@]}"; do
 
 		case "$variant" in
 			windowsservercore-*) template='windowsservercore'; tag="${variant#*-}" ;;
-			stretch) template='debian'; tag="${variant}" ;;
 			*) template='debian'; tag="${variant}-slim" ;;
 		esac
+
+		if [ "$version" = '1.0' ] && [ "$template" = 'debian' ] && [ "$variant" = 'stretch' ]; then
+			# 1.0-stretch needs to stay non-slim for backwards compatibility
+			tag="$variant"
+		fi
 
 		sed -r \
 			-e 's!%%JULIA_VERSION%%!'"$fullVersion"'!g' \
