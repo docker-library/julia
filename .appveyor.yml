@@ -3,9 +3,7 @@ image: Visual Studio 2017
 
 environment:
   matrix:
-    - version: 1.3-rc
-      variant: windowsservercore-ltsc2016
-    - version: 1.2
+    - version: 1.3
       variant: windowsservercore-ltsc2016
     - version: 1.0
       variant: windowsservercore-ltsc2016
