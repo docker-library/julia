@@ -65,7 +65,7 @@ for version in "${versions[@]}"; do
 	echo "$version: $fullVersion"
 
 	for v in \
-		windows/windowsservercore-{ltsc2016,1803} \
+		windows/windowsservercore-{ltsc2016,1809} \
 		{stretch,buster} \
 	; do
 		dir="$version/$v"
@@ -91,9 +91,6 @@ for version in "${versions[@]}"; do
 			"Dockerfile-$template.template" > "$dir/Dockerfile"
 
 		case "$v" in
-			windows/*-1803)
-				travisEnv="\n    - os: windows\n      dist: 1803-containers\n      env: VERSION=$version VARIANT=$v$travisEnv"
-				;;
 			windows/*)
 				appveyorEnv='\n    - version: '"$version"'\n      variant: '"$variant$appveyorEnv"
 				;;

@@ -89,7 +89,7 @@ join() {
 for version in "${versions[@]}"; do
 	for v in \
 		{buster,stretch} \
-		windows/windowsservercore-{ltsc2016,1803} \
+		windows/windowsservercore-{ltsc2016,1809} \
 	; do
 		dir="$version/$v"
 		dir="${dir#./}"
