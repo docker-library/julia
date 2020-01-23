@@ -90,6 +90,16 @@ for version in "${versions[@]}"; do
 			-e 's!%%ARCH-CASE%%!'"$(sed_escape_rhs "$linuxArchCase")"'!g' \
 			"Dockerfile-$template.template" > "$dir/Dockerfile"
 
+		case "$dir" in
+			1.0/windows/* | 1.3/windows/*)
+				# https://github.com/JuliaLang/julia/blob/v1.4.0-rc1/NEWS.md#build-system-changes
+				sed -ri \
+					-e 's!/SILENT!/S!g' \
+					-e 's!/DIR=!/D=!g' \
+					"$dir/Dockerfile"
+				;;
+		esac
+
 		case "$v" in
 			# https://www.appveyor.com/docs/windows-images-software/
 			windows/*-1809)
