@@ -91,9 +91,14 @@ for version in "${versions[@]}"; do
 			"Dockerfile-$template.template" > "$dir/Dockerfile"
 
 		case "$v" in
-			windows/*)
-				appveyorEnv='\n    - version: '"$version"'\n      variant: '"$variant$appveyorEnv"
+			# https://www.appveyor.com/docs/windows-images-software/
+			windows/*-1809)
+				appveyorEnv='\n    - version: '"$version"'\n      variant: '"$variant"'\n      APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019'"$appveyorEnv"
 				;;
+			windows/*-ltsc2016)
+				appveyorEnv='\n    - version: '"$version"'\n      variant: '"$variant"'\n      APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017'"$appveyorEnv"
+				;;
+
 			*)
 				for arch in i386 ''; do
 					travisEnv="\n    - os: linux\n      env: VERSION=$version VARIANT=$v ARCH=$arch$travisEnv"
