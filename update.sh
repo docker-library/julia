@@ -18,9 +18,10 @@ sed_escape_rhs() {
 
 rcRegex='-(pre[.])?(alpha|beta|rc)[0-9]*'
 
-pattern='.*/julia-([0-9]+\.[0-9]+\.[0-9]+('"$rcRegex"')?)-linux-x86_64\.tar\.gz.*'
+pattern='[^"]*/julia-([0-9]+\.[0-9]+\.[0-9]+('"$rcRegex"')?)-linux-x86_64\.tar\.gz[^"]*'
 allVersions="$(
 	curl -fsSL 'https://julialang.org/downloads/' \
+		| grep -oE "$pattern" \
 		| sed -rn "s!${pattern}!\1!gp" \
 		| sort -ruV
 )"
@@ -35,7 +36,7 @@ for version in "${versions[@]}"; do
 	fi
 	rcGrepV+=' -E'
 
-	fullVersion="$(echo "$allVersions" | grep -E "^${rcVersion}([.-]|$)" | grep $rcGrepV -- "$rcRegex" | head -1)"
+	fullVersion="$(grep -E "^${rcVersion}([.-]|$)" <<<"$allVersions" | grep $rcGrepV -- "$rcRegex" | head -1)"
 	if [ -z "$fullVersion" ]; then
 		echo >&2 "error: failed to determine latest release for '$version'"
 		exit 1
