@@ -3,16 +3,10 @@ image: Visual Studio 2017
 
 environment:
   matrix:
-    - version: 1.4-rc
+    - version: 1.4
       variant: windowsservercore-1809
       APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
-    - version: 1.4-rc
-      variant: windowsservercore-ltsc2016
-      APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
-    - version: 1.3
-      variant: windowsservercore-1809
-      APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
-    - version: 1.3
+    - version: 1.4
       variant: windowsservercore-ltsc2016
       APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
     - version: 1.0
