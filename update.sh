@@ -92,7 +92,7 @@ for version in "${versions[@]}"; do
 			"Dockerfile-$template.template" > "$dir/Dockerfile"
 
 		case "$dir" in
-			1.0/windows/* | 1.3/windows/*)
+			1.0/windows/*)
 				# https://github.com/JuliaLang/julia/blob/v1.4.0-rc1/NEWS.md#build-system-changes
 				sed -ri \
 					-e 's!/SILENT!/S!g' \
