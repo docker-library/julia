@@ -47,7 +47,7 @@ for version in "${versions[@]}"; do
 	for dpkgArch in $(dpkgArches "$version"); do
 		tarArch="$(dpkgToJuliaTarArch "$version" "$dpkgArch")"
 		dirArch="$(dpkgToJuliaDirArch "$version" "$dpkgArch")"
-		sha256="$(echo "$sha256s" | grep "julia-${fullVersion}-linux-${tarArch}.tar.gz$" | cut -d' ' -f1 || :)"
+		sha256="$(grep "julia-${fullVersion}-linux-${tarArch}.tar.gz$" <<<"$sha256s" | cut -d' ' -f1 || :)"
 		if [ -z "$sha256" ]; then
 			echo >&2 "warning: cannot find sha256 for $fullVersion on arch $tarArch / $dirArch ($dpkgArch); skipping"
 			continue
@@ -59,12 +59,13 @@ for version in "${versions[@]}"; do
 	linuxArchCase+=$'\t\t''*) echo >&2 "error: current architecture ($dpkgArch) does not have a corresponding Julia binary release"; exit 1 ;; '$'\\\n'
 	linuxArchCase+=$'\t''esac'
 
-	winSha256="$(echo "$sha256s" | grep "julia-${fullVersion}-win64.exe$" | cut -d' ' -f1)"
+	winSha256="$(grep "julia-${fullVersion}-win64.exe$" <<<"$sha256s" | cut -d' ' -f1)"
 
 	echo "$version: $fullVersion"
 
 	for v in \
 		windows/windowsservercore-{ltsc2016,1809} \
+		alpine3.12 \
 		{stretch,buster} \
 	; do
 		dir="$version/$v"
@@ -74,6 +75,7 @@ for version in "${versions[@]}"; do
 
 		case "$variant" in
 			windowsservercore-*) template='windowsservercore'; tag="${variant#*-}" ;;
+			alpine*) template='alpine'; tag="${variant#alpine}" ;;
 			*) template='debian'; tag="${variant}-slim" ;;
 		esac
 
@@ -82,11 +84,26 @@ for version in "${versions[@]}"; do
 			tag="$variant"
 		fi
 
+		variantArchCase="$linuxArchCase"
+		if [ "$template" = 'alpine' ]; then
+			sha256="$(grep "julia-${fullVersion}-musl-x86_64.tar.gz$" <<<"$sha256s" | cut -d' ' -f1 || :)"
+			[ -n "$sha256" ] || continue
+			variantArchCase='apkArch="$(apk --print-arch)"; '$'\\\n'
+			variantArchCase+=$'\t''case "$apkArch" in '$'\\\n'
+			# TODO Alpine multiarch
+			variantArchCase+='# amd64'$'\n'
+			tarArch="$(dpkgToJuliaTarArch "$version" 'amd64')"
+			dirArch="$(dpkgToJuliaDirArch "$version" 'amd64')"
+			variantArchCase+=$'\t\t'"x86_64) tarArch='$tarArch'; dirArch='$dirArch'; sha256='$sha256' ;; "$'\\\n'
+			variantArchCase+=$'\t\t''*) echo >&2 "error: current architecture ($apkArch) does not have a corresponding Julia binary release"; exit 1 ;; '$'\\\n'
+			variantArchCase+=$'\t''esac'
+		fi
+
 		sed -r \
 			-e 's!%%JULIA_VERSION%%!'"$fullVersion"'!g' \
 			-e 's!%%TAG%%!'"$tag"'!g' \
 			-e 's!%%JULIA_WINDOWS_SHA256%%!'"$winSha256"'!g' \
-			-e 's!%%ARCH-CASE%%!'"$(sed_escape_rhs "$linuxArchCase")"'!g' \
+			-e 's!%%ARCH-CASE%%!'"$(sed_escape_rhs "$variantArchCase")"'!g' \
 			"Dockerfile-$template.template" > "$dir/Dockerfile"
 
 		case "$dir" in
