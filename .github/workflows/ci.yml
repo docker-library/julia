@@ -25,6 +25,7 @@ jobs:
           git clone --depth 1 https://github.com/docker-library/bashbrew.git -b master ~/bashbrew
           strategy="$(~/bashbrew/scripts/github-actions/generate.sh)"
           strategy="$(~/bashbrew/scripts/github-actions/munge-i386.sh -c <<<"$strategy")"
+          strategy="$(jq -c <<<"$strategy" '.matrix.include = [ .matrix.include[] | select(.name | test("alpine.*i386") | not) ]')" # Alpine releases do not exist for i386
           jq . <<<"$strategy" # sanity check / debugging aid
           echo "::set-output name=strategy::$strategy"
 
