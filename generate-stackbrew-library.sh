@@ -6,6 +6,7 @@ declare -A aliases=(
 	[1.5-rc]='rc'
 )
 defaultDebianVariant='buster'
+defaultAlpineVariant='alpine3.12'
 
 self="$(basename "$BASH_SOURCE")"
 cd "$(dirname "$(readlink -f "$BASH_SOURCE")")"
@@ -90,6 +91,7 @@ join() {
 for version in "${versions[@]}"; do
 	for v in \
 		{buster,stretch} \
+		alpine3.12 \
 		windows/windowsservercore-{ltsc2016,1809} \
 	; do
 		dir="$version/$v"
@@ -113,6 +115,9 @@ for version in "${versions[@]}"; do
 		)
 
 		variantAliases=( "${versionAliases[@]/%/-$variant}" )
+		if [ "$variant" = "$defaultAlpineVariant" ]; then
+			variantAliases+=( "${versionAliases[@]/%/-alpine}" )
+		fi
 		variantAliases=( "${variantAliases[@]//latest-/}" )
 
 		sharedTags=()
