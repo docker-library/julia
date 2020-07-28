@@ -8,19 +8,19 @@ ENV PATH $JULIA_PATH/bin:$PATH
 ENV JULIA_GPG 3673DF529D9049477F76B37566E3C7DC03D6E495
 
 # https://julialang.org/downloads/
-ENV JULIA_VERSION 1.5.0-rc1
+ENV JULIA_VERSION 1.5.0-rc2
 
 RUN set -eux; \
 	\
 	apk add --no-cache --virtual .fetch-deps gnupg; \
 	\
 # https://julialang.org/downloads/#julia-command-line-version
-# https://julialang-s3.julialang.org/bin/checksums/julia-1.5.0-rc1.sha256
+# https://julialang-s3.julialang.org/bin/checksums/julia-1.5.0-rc2.sha256
 # this "case" statement is generated via "update.sh"
 	apkArch="$(apk --print-arch)"; \
 	case "$apkArch" in \
 # amd64
-		x86_64) tarArch='x86_64'; dirArch='x64'; sha256='43e3a30133aee14657cc8984cc51e8f308ac1978e4c5986f4c976b8e8747194f' ;; \
+		x86_64) tarArch='x86_64'; dirArch='x64'; sha256='57e0b895969c2ab2db56b10aa05df2dbd731f02fa4de43f98c4f4b6ad03cebf3' ;; \
 		*) echo >&2 "error: current architecture ($apkArch) does not have a corresponding Julia binary release"; exit 1 ;; \
 	esac; \
 	\
