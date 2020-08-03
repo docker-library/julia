@@ -1,10 +1,10 @@
-FROM mcr.microsoft.com/windows/servercore:ltsc2016
+FROM mcr.microsoft.com/windows/servercore:1809
 
 # $ProgressPreference: https://github.com/PowerShell/PowerShell/issues/2138#issuecomment-251261324
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
-ENV JULIA_VERSION 1.4.2
-ENV JULIA_SHA256 9775aa53f711167522ff4681f055d2ed8dc8682c99c28eb88c324ac766d0aebd
+ENV JULIA_VERSION 1.5.0
+ENV JULIA_SHA256 4e7a488f81bec527d333f8f212ede0888297efa4c3596230d967b083a9c776be
 
 RUN $url = ('https://julialang-s3.julialang.org/bin/winnt/x64/{1}/julia-{0}-win64.exe' -f $env:JULIA_VERSION, ($env:JULIA_VERSION.Split('.')[0..1] -Join '.')); \
 	Write-Host ('Downloading {0} ...' -f $url); \
