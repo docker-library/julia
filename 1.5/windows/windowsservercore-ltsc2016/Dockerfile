@@ -4,7 +4,7 @@ FROM mcr.microsoft.com/windows/servercore:ltsc2016
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
 ENV JULIA_VERSION 1.5.2
-ENV JULIA_SHA256 a49c9c2c42b8d6486e86151b4ada79948266f63d5d9039422dedb8c983b92e10
+ENV JULIA_SHA256 7f6deda3132795a646934fe9aa5446b6932c31bd70e34a2dd4d0ead5be915a2a
 
 RUN $url = ('https://julialang-s3.julialang.org/bin/winnt/x64/{1}/julia-{0}-win64.exe' -f $env:JULIA_VERSION, ($env:JULIA_VERSION.Split('.')[0..1] -Join '.')); \
 	Write-Host ('Downloading {0} ...' -f $url); \
