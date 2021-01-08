@@ -3,7 +3,6 @@ set -Eeuo pipefail
 
 declare -A aliases=(
 	[1.5]='1 latest'
-	[1.6-rc]='rc'
 )
 defaultDebianVariant='buster'
 defaultAlpineVariant='alpine3.12'
