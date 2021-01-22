@@ -65,7 +65,7 @@ for version in "${versions[@]}"; do
 
 	for v in \
 		windows/windowsservercore-{ltsc2016,1809} \
-		alpine3.12 \
+		alpine{3.13,3.12} \
 		{stretch,buster} \
 	; do
 		dir="$version/$v"
