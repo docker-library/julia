@@ -5,7 +5,7 @@ declare -A aliases=(
 	[1.6]='1 latest'
 )
 defaultDebianVariant='buster'
-defaultAlpineVariant='alpine3.13'
+defaultAlpineVariant='alpine3.14'
 
 self="$(basename "$BASH_SOURCE")"
 cd "$(dirname "$(readlink -f "$BASH_SOURCE")")"
@@ -90,7 +90,7 @@ join() {
 for version in "${versions[@]}"; do
 	for v in \
 		{buster,stretch} \
-		alpine{3.13,3.12} \
+		alpine{3.14,3.13} \
 		windows/windowsservercore-{1809,ltsc2016} \
 	; do
 		dir="$version/$v"
