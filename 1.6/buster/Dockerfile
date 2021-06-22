@@ -56,7 +56,7 @@ RUN set -eux; \
 	echo "${sha256} *julia.tar.gz" | sha256sum -c -; \
 	\
 	export GNUPGHOME="$(mktemp -d)"; \
-	gpg --batch --keyserver ha.pool.sks-keyservers.net --recv-keys "$JULIA_GPG"; \
+	gpg --batch --keyserver keyserver.ubuntu.com --recv-keys "$JULIA_GPG"; \
 	gpg --batch --verify julia.tar.gz.asc julia.tar.gz; \
 	command -v gpgconf > /dev/null && gpgconf --kill all; \
 	rm -rf "$GNUPGHOME" julia.tar.gz.asc; \
