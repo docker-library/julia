@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -Eeuo pipefail
 
+# TODO https://julialang-s3.julialang.org/bin/versions.json ?
+# delayed deploys: https://github.com/JuliaLang/julia/issues/38946#issuecomment-749224376
+
 cd "$(dirname "$(readlink -f "$BASH_SOURCE")")"
 
 versions=( "$@" )
