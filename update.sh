@@ -90,7 +90,10 @@ for version in "${versions[@]}"; do
 		variantArchCase="$linuxArchCase"
 		if [ "$template" = 'alpine' ]; then
 			sha256="$(grep "julia-${fullVersion}-musl-x86_64.tar.gz$" <<<"$sha256s" | cut -d' ' -f1 || :)"
-			[ -n "$sha256" ] || continue
+			if [ -z "$sha256" ]; then
+				echo >&2 "error: missing musl build for $fullVersion ($version)!"
+				exit 1
+			fi
 			variantArchCase='apkArch="$(apk --print-arch)"; '$'\\\n'
 			variantArchCase+=$'\t''case "$apkArch" in '$'\\\n'
 			# TODO Alpine multiarch
