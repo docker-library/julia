@@ -3,8 +3,8 @@ FROM mcr.microsoft.com/windows/servercore:ltsc2016
 # $ProgressPreference: https://github.com/PowerShell/PowerShell/issues/2138#issuecomment-251261324
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
-ENV JULIA_VERSION 1.7.0-beta4
-ENV JULIA_SHA256 fb6dcebf9d40c4fa855670fd20f31ecd830282720396c71f98d8ab92d32a94ad
+ENV JULIA_VERSION 1.7.0-rc1
+ENV JULIA_SHA256 1cbcd141d8836122a59f8fb9cfb8d49b47a7688a12ad9e45642d184a913497a9
 
 RUN $url = ('https://julialang-s3.julialang.org/bin/winnt/x64/{1}/julia-{0}-win64.exe' -f $env:JULIA_VERSION, ($env:JULIA_VERSION.Split('.')[0..1] -Join '.')); \
 	Write-Host ('Downloading {0} ...' -f $url); \
