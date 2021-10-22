@@ -17,7 +17,7 @@ ENV PATH $JULIA_PATH/bin:$PATH
 ENV JULIA_GPG 3673DF529D9049477F76B37566E3C7DC03D6E495
 
 # https://julialang.org/downloads/
-ENV JULIA_VERSION 1.7.0-rc1
+ENV JULIA_VERSION 1.7.0-rc2
 
 RUN set -eux; \
 	\
@@ -32,20 +32,20 @@ RUN set -eux; \
 	fi; \
 	\
 # https://julialang.org/downloads/#julia-command-line-version
-# https://julialang-s3.julialang.org/bin/checksums/julia-1.7.0-rc1.sha256
+# https://julialang-s3.julialang.org/bin/checksums/julia-1.7.0-rc2.sha256
 # this "case" statement is generated via "update.sh"
 	dpkgArch="$(dpkg --print-architecture)"; \
 	case "${dpkgArch##*-}" in \
 # amd64
-		amd64) tarArch='x86_64'; dirArch='x64'; sha256='3c31b79d644eef21811732a1a69bd3d9f23e4b8b19b2856874b02b8fa6a63254' ;; \
+		amd64) tarArch='x86_64'; dirArch='x64'; sha256='1fbcc7b0f6ee53a12d6d8063ec3ffcf94f1c1b6df9b63de8564ddbe4711e186f' ;; \
 # arm32v7
-		armhf) tarArch='armv7l'; dirArch='armv7l'; sha256='92a5e4f8dfbe92ecbbde596b5d2fdc7ab6daf9c5aa2e99695d31968bd75bfea9' ;; \
+		armhf) tarArch='armv7l'; dirArch='armv7l'; sha256='4d735daa2aacbd74e80480dfc75753e9f87a71e494649a107cdb3b21a36914ee' ;; \
 # arm64v8
-		arm64) tarArch='aarch64'; dirArch='aarch64'; sha256='63212a1869dc92dc6326ffd947390633f3b482f37a3c5ec8369973541bdc6205' ;; \
+		arm64) tarArch='aarch64'; dirArch='aarch64'; sha256='366bb2a8f73a6706b472dbae96ad34230773e448c5425affbcd99846361db97c' ;; \
 # i386
-		i386) tarArch='i686'; dirArch='x86'; sha256='916bd0870ad4a8109af12c173bdb95eb0310aea43a9788da654ec3b26fa93d29' ;; \
+		i386) tarArch='i686'; dirArch='x86'; sha256='4460a2501e29d40024f235a01beda1764e621010c5bc718dcc3cc34862a0ff5c' ;; \
 # ppc64le
-		ppc64el) tarArch='ppc64le'; dirArch='ppc64le'; sha256='0aba16c32600fd4de9b936e169017659f557d9ca21317a73cc310c96469458b9' ;; \
+		ppc64el) tarArch='ppc64le'; dirArch='ppc64le'; sha256='b44631544beb2b22fde9591776b2d561cb884bb6f09e5bd49c4e78ca76d42813' ;; \
 		*) echo >&2 "error: current architecture ($dpkgArch) does not have a corresponding Julia binary release"; exit 1 ;; \
 	esac; \
 	\
