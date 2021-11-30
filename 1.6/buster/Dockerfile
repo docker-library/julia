@@ -1,3 +1,9 @@
+#
+# NOTE: THIS DOCKERFILE IS GENERATED VIA "apply-templates.sh"
+#
+# PLEASE DO NOT EDIT IT DIRECTLY.
+#
+
 FROM debian:buster-slim
 
 RUN set -eux; \
@@ -33,25 +39,34 @@ RUN set -eux; \
 	\
 # https://julialang.org/downloads/#julia-command-line-version
 # https://julialang-s3.julialang.org/bin/checksums/julia-1.6.4.sha256
-# this "case" statement is generated via "update.sh"
-	dpkgArch="$(dpkg --print-architecture)"; \
-	case "${dpkgArch##*-}" in \
-# amd64
-		amd64) tarArch='x86_64'; dirArch='x64'; sha256='52244ae47697e8073dfbc9d1251b0422f0dbd1fbe1a41da4b9f7ddf0506b2132' ;; \
-# arm32v7
-		armhf) tarArch='armv7l'; dirArch='armv7l'; sha256='9ad3f6bd71eb6840d4cef1569855da20c0b4931a2bdf77703a64df672b0702a1' ;; \
-# arm64v8
-		arm64) tarArch='aarch64'; dirArch='aarch64'; sha256='072daac7229c15fa41d0c1b65b8a3d6ee747323d02f5943da3846b075291b48b' ;; \
-# i386
-		i386) tarArch='i686'; dirArch='x86'; sha256='9d43d642174cf22cf0fde18dc2578c84f357d2c619b9d846d3a6da4192ba48cf' ;; \
-		*) echo >&2 "error: current architecture ($dpkgArch) does not have a corresponding Julia binary release"; exit 1 ;; \
+	arch="$(dpkg --print-architecture)"; \
+	case "$arch" in \
+		'amd64') \
+			url='https://julialang-s3.julialang.org/bin/linux/x64/1.6/julia-1.6.4-linux-x86_64.tar.gz'; \
+			sha256='52244ae47697e8073dfbc9d1251b0422f0dbd1fbe1a41da4b9f7ddf0506b2132'; \
+			;; \
+		'armhf') \
+			url='https://julialang-s3.julialang.org/bin/linux/armv7l/1.6/julia-1.6.4-linux-armv7l.tar.gz'; \
+			sha256='9ad3f6bd71eb6840d4cef1569855da20c0b4931a2bdf77703a64df672b0702a1'; \
+			;; \
+		'arm64') \
+			url='https://julialang-s3.julialang.org/bin/linux/aarch64/1.6/julia-1.6.4-linux-aarch64.tar.gz'; \
+			sha256='072daac7229c15fa41d0c1b65b8a3d6ee747323d02f5943da3846b075291b48b'; \
+			;; \
+		'i386') \
+			url='https://julialang-s3.julialang.org/bin/linux/x86/1.6/julia-1.6.4-linux-i686.tar.gz'; \
+			sha256='9d43d642174cf22cf0fde18dc2578c84f357d2c619b9d846d3a6da4192ba48cf'; \
+			;; \
+		*) \
+			echo >&2 "error: current architecture ($arch) does not have a corresponding Julia binary release"; \
+			exit 1; \
+			;; \
 	esac; \
 	\
-	folder="$(echo "$JULIA_VERSION" | cut -d. -f1-2)"; \
-	curl -fL -o julia.tar.gz.asc "https://julialang-s3.julialang.org/bin/linux/${dirArch}/${folder}/julia-${JULIA_VERSION}-linux-${tarArch}.tar.gz.asc"; \
-	curl -fL -o julia.tar.gz     "https://julialang-s3.julialang.org/bin/linux/${dirArch}/${folder}/julia-${JULIA_VERSION}-linux-${tarArch}.tar.gz"; \
+	curl -fL -o julia.tar.gz.asc "$url.asc"; \
+	curl -fL -o julia.tar.gz "$url"; \
 	\
-	echo "${sha256} *julia.tar.gz" | sha256sum -c -; \
+	echo "$sha256 *julia.tar.gz" | sha256sum --strict --check -; \
 	\
 	export GNUPGHOME="$(mktemp -d)"; \
 	gpg --batch --keyserver keyserver.ubuntu.com --recv-keys "$JULIA_GPG"; \
