@@ -68,8 +68,8 @@ for version in "${versions[@]}"; do
 
 	for v in \
 		windows/windowsservercore-{ltsc2022,1809,ltsc2016} \
-		alpine{3.14,3.13} \
-		{stretch,buster} \
+		alpine{3.15,3.14} \
+		{bullseye,buster} \
 	; do
 		dir="$version/$v"
 		variant="$(basename "$v")"
@@ -81,11 +81,6 @@ for version in "${versions[@]}"; do
 			alpine*) template='alpine'; tag="${variant#alpine}" ;;
 			*) template='debian'; tag="${variant}-slim" ;;
 		esac
-
-		if [ "$version" = '1.0' ] && [ "$template" = 'debian' ] && [ "$variant" = 'stretch' ]; then
-			# 1.0-stretch needs to stay non-slim for backwards compatibility
-			tag="$variant"
-		fi
 
 		variantArchCase="$linuxArchCase"
 		if [ "$template" = 'alpine' ]; then
