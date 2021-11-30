@@ -4,8 +4,8 @@ set -Eeuo pipefail
 declare -A aliases=(
 	[1.6]='1 latest'
 )
-defaultDebianVariant='buster'
-defaultAlpineVariant='alpine3.14'
+defaultDebianVariant='bullseye'
+defaultAlpineVariant='alpine3.15'
 
 self="$(basename "$BASH_SOURCE")"
 cd "$(dirname "$(readlink -f "$BASH_SOURCE")")"
@@ -89,8 +89,8 @@ join() {
 
 for version in "${versions[@]}"; do
 	for v in \
-		{buster,stretch} \
-		alpine{3.14,3.13} \
+		{bullseye,buster} \
+		alpine{3.15,3.14} \
 		windows/windowsservercore-{ltsc2022,1809,ltsc2016} \
 	; do
 		dir="$version/$v"

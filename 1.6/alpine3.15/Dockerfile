@@ -1,4 +1,4 @@
-FROM alpine:3.13
+FROM alpine:3.15
 
 ENV JULIA_PATH /usr/local/julia
 ENV PATH $JULIA_PATH/bin:$PATH
