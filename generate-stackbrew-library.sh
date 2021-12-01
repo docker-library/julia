@@ -4,17 +4,17 @@ set -Eeuo pipefail
 declare -A aliases=(
 	[1.6]='1 latest'
 )
-defaultDebianVariant='bullseye'
-defaultAlpineVariant='alpine3.15'
 
 self="$(basename "$BASH_SOURCE")"
 cd "$(dirname "$(readlink -f "$BASH_SOURCE")")"
 
-versions=( */ )
-versions=( "${versions[@]%/}" )
+if [ "$#" -eq 0 ]; then
+	versions="$(jq -r 'keys | map(@sh) | join(" ")' versions.json)"
+	eval "set -- $versions"
+fi
 
 # sort version numbers with highest first
-IFS=$'\n'; versions=( $(echo "${versions[*]}" | sort -rV) ); unset IFS
+IFS=$'\n'; set -- $(sort -rV <<<"$*"); unset IFS
 
 # get the most recent commit which modified any of "$@"
 fileCommit() {
@@ -26,15 +26,19 @@ dirCommit() {
 	local dir="$1"; shift
 	(
 		cd "$dir"
-		fileCommit \
-			Dockerfile \
-			$(git show HEAD:./Dockerfile | awk '
+		files="$(
+			git show HEAD:./Dockerfile | awk '
 				toupper($1) == "COPY" {
 					for (i = 2; i < NF; i++) {
+						if ($i ~ /^--from=/) {
+							next
+						}
 						print $i
 					}
 				}
-			')
+			'
+		)"
+		fileCommit Dockerfile $files
 	)
 }
 
@@ -54,24 +58,6 @@ getArches() {
 }
 getArches 'julia'
 
-source '.architectures-lib'
-
-parentArches() {
-	local version="$1"; shift # "1.8", etc
-	local dir="$1"; shift # "1.8/windows/windowsservercore-ltsc2016"
-
-	local parent="$(awk 'toupper($1) == "FROM" { print $2 }' "$dir/Dockerfile")"
-	local parentArches="${parentRepoToArches[$parent]:-}"
-
-	local arches=()
-	for arch in $parentArches; do
-		if hasBashbrewArch "$version" "$arch" && grep -qE "^# $arch\$" "$dir/Dockerfile"; then
-			arches+=( "$arch" )
-		fi
-	done
-	echo "${arches[*]}"
-}
-
 cat <<-EOH
 # this file is generated via https://github.com/docker-library/julia/blob/$(fileCommit "$self")/$self
 
@@ -87,46 +73,97 @@ join() {
 	echo "${out#$sep}"
 }
 
-for version in "${versions[@]}"; do
-	for v in \
-		{bullseye,buster} \
-		alpine{3.15,3.14} \
-		windows/windowsservercore-{ltsc2022,1809,ltsc2016} \
-	; do
-		dir="$version/$v"
-		dir="${dir#./}"
-		variant="$(basename "$v")"
+for version; do
+	export version
+	variants="$(jq -r '.[env.version].variants | map(@sh) | join(" ")' versions.json)"
+	eval "variants=( $variants )"
 
+	fullVersion="$(jq -r '.[env.version].version' versions.json)"
+
+	versionAliases=(
+		$fullVersion
+		$version
+		${aliases[$version]:-}
+	)
+
+	defaultDebianVariant="$(jq -r '
+		.[env.version].variants
+		| map(select(
+			startswith("alpine")
+			or startswith("windows/")
+			| not
+		))
+		| .[0]
+	' versions.json)"
+	defaultAlpineVariant="$(jq -r '
+		.[env.version].variants
+		| map(select(
+			startswith("alpine")
+		))
+		| .[0]
+	' versions.json)"
+
+	for v in "${variants[@]}"; do
+		dir="$version/$v"
 		[ -f "$dir/Dockerfile" ] || continue
+		variant="$(basename "$v")"
+		export variant
 
 		commit="$(dirCommit "$dir")"
 
-		fullVersion="$(git show "$commit":"$dir/Dockerfile" | awk '$1 == "ENV" && $2 == "JULIA_VERSION" { print $3; exit }')"
-
-		versionAliases=()
-		while [ "$fullVersion" != "$version" -a "${fullVersion%[.-]*}" != "$fullVersion" ]; do
-			versionAliases+=( $fullVersion )
-			fullVersion="${fullVersion%[.-]*}"
-		done
-		versionAliases+=(
-			$version
-			${aliases[$version]:-}
-		)
-
 		variantAliases=( "${versionAliases[@]/%/-$variant}" )
-		if [ "$variant" = "$defaultAlpineVariant" ]; then
-			variantAliases+=( "${versionAliases[@]/%/-alpine}" )
-		fi
+		sharedTags=()
+		case "$variant" in
+			"$defaultDebianVariant" | windowsservercore-*)
+				sharedTags=( "${versionAliases[@]}" )
+				;;
+			"$defaultAlpineVariant")
+				variantAliases+=( "${versionAliases[@]/%/-alpine}" )
+				;;
+		esac
 		variantAliases=( "${variantAliases[@]//latest-/}" )
 
-		sharedTags=()
-		if [ "$variant" = "$defaultDebianVariant" ] || [[ "$variant" == 'windowsservercore'* ]]; then
-			sharedTags+=( "${versionAliases[@]}" )
-		fi
+		for windowsShared in windowsservercore nanoserver; do
+			if [[ "$variant" == "$windowsShared"* ]]; then
+				sharedTags+=( "${versionAliases[@]/%/-$windowsShared}" )
+				sharedTags=( "${sharedTags[@]//latest-/}" )
+				break
+			fi
+		done
 
+		constraints=
 		case "$v" in
-			windows/*) variantArches='windows-amd64' ;;
-			*) variantArches="$(parentArches "$version" "$dir")" ;;
+			windows/*)
+				variantArches="$(jq -r '
+					.[env.version].arches
+					| keys[]
+					| select(startswith("windows-"))
+					| select(. != "windows-i386") # TODO "windows-arm64v8" someday? 👀
+				' versions.json | sort)"
+				constraints="$variant"
+				;;
+
+			*)
+				variantParent="$(awk 'toupper($1) == "FROM" { print $2; exit }' "$dir/Dockerfile")"
+				variantArches="${parentRepoToArches[$variantParent]:-}"
+				variantArches="$(
+					comm -12 \
+						<(
+							jq -r '
+								.[env.version].arches
+								| keys[]
+								| if env.variant | startswith("alpine") then
+									if startswith("alpine-") then
+										ltrimstr("alpine-")
+									else
+										empty
+									end
+								else . end
+							' versions.json | sort
+						) \
+						<(xargs -n1 <<<"$variantArches" | sort)
+				)"
+				;;
 		esac
 
 		echo
@@ -139,6 +176,6 @@ for version in "${versions[@]}"; do
 			GitCommit: $commit
 			Directory: $dir
 		EOE
-		[[ "$v" == windows/* ]] && echo "Constraints: $variant"
+		[ -z "$constraints" ] || echo "Constraints: $constraints"
 	done
 done

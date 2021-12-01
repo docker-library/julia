@@ -1,8 +1,0 @@
-# see https://julialang.org/downloads/#julia-command-line-version
-
-# bashbrew-arch dpkg-arch julia-tar-arch julia-dir-arch
-amd64   amd64   x86_64  x64
-arm32v7 armhf   armv7l  armv7l
-arm64v8 arm64   aarch64 aarch64
-i386    i386    i686    x86
-ppc64le ppc64el ppc64le ppc64le

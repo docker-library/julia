@@ -1,3 +1,9 @@
+#
+# NOTE: THIS DOCKERFILE IS GENERATED VIA "apply-templates.sh"
+#
+# PLEASE DO NOT EDIT IT DIRECTLY.
+#
+
 FROM alpine:3.15
 
 ENV JULIA_PATH /usr/local/julia
@@ -16,19 +22,22 @@ RUN set -eux; \
 	\
 # https://julialang.org/downloads/#julia-command-line-version
 # https://julialang-s3.julialang.org/bin/checksums/julia-1.6.4.sha256
-# this "case" statement is generated via "update.sh"
-	apkArch="$(apk --print-arch)"; \
-	case "$apkArch" in \
-# amd64
-		x86_64) tarArch='x86_64'; dirArch='x64'; sha256='63f121dffa982ff9b53c7c8a334830e17e2c9d2efa79316a548d29f7f8925e66' ;; \
-		*) echo >&2 "error: current architecture ($apkArch) does not have a corresponding Julia binary release"; exit 1 ;; \
+	arch="$(apk --print-arch)"; \
+	case "$arch" in \
+		'x86_64') \
+			url='https://julialang-s3.julialang.org/bin/musl/x64/1.6/julia-1.6.4-musl-x86_64.tar.gz'; \
+			sha256='63f121dffa982ff9b53c7c8a334830e17e2c9d2efa79316a548d29f7f8925e66'; \
+			;; \
+		*) \
+			echo >&2 "error: current architecture ($arch) does not have a corresponding Julia binary release"; \
+			exit 1; \
+			;; \
 	esac; \
 	\
-	folder="$(echo "$JULIA_VERSION" | cut -d. -f1-2)"; \
-	wget -O julia.tar.gz.asc "https://julialang-s3.julialang.org/bin/musl/${dirArch}/${folder}/julia-${JULIA_VERSION}-musl-${tarArch}.tar.gz.asc"; \
-	wget -O julia.tar.gz     "https://julialang-s3.julialang.org/bin/musl/${dirArch}/${folder}/julia-${JULIA_VERSION}-musl-${tarArch}.tar.gz"; \
+	wget -O julia.tar.gz.asc "$url.asc"; \
+	wget -O julia.tar.gz "$url"; \
 	\
-	echo "${sha256} *julia.tar.gz" | sha256sum -c -; \
+	echo "$sha256 *julia.tar.gz" | sha256sum -w -c -; \
 	\
 	export GNUPGHOME="$(mktemp -d)"; \
 	gpg --batch --keyserver keyserver.ubuntu.com --recv-keys "$JULIA_GPG"; \
