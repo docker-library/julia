@@ -4,14 +4,14 @@
 # PLEASE DO NOT EDIT IT DIRECTLY.
 #
 
-FROM mcr.microsoft.com/windows/servercore:ltsc2022
+FROM mcr.microsoft.com/windows/servercore:ltsc2016
 
 # $ProgressPreference: https://github.com/PowerShell/PowerShell/issues/2138#issuecomment-251261324
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
-ENV JULIA_VERSION 1.0.5
-ENV JULIA_URL https://julialang-s3.julialang.org/bin/winnt/x64/1.0/julia-1.0.5-win64.exe
-ENV JULIA_SHA256 83c04bdc264e7ab87f4e22be9f3dff8c5a62a49c8edea6a0c85f4645d4cbac7a
+ENV JULIA_VERSION 1.7.0
+ENV JULIA_URL https://julialang-s3.julialang.org/bin/winnt/x64/1.7/julia-1.7.0-win64.exe
+ENV JULIA_SHA256 40c6704a9f27031729610e177aa1cae5386336c7fea9c2e021e3b14d230498d5
 
 RUN Write-Host ('Downloading {0} ...' -f $env:JULIA_URL); \
 	[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; \
@@ -27,8 +27,8 @@ RUN Write-Host ('Downloading {0} ...' -f $env:JULIA_URL); \
 	Start-Process -Wait -NoNewWindow \
 		-FilePath '.\julia.exe' \
 		-ArgumentList @( \
-			'/S', \
-			'/D=C:\julia' \
+			'/SILENT', \
+			'/DIR=C:\julia' \
 		); \
 	\
 	Write-Host 'Removing ...'; \
