@@ -21,16 +21,8 @@ RUN Write-Host ('Downloading {0} ...' -f $env:JULIA_URL); \
 	Start-Process -Wait -NoNewWindow \
 		-FilePath '.\julia.exe' \
 		-ArgumentList @( \
-{{
-	# https://github.com/JuliaLang/julia/blob/v1.4.0-rc1/NEWS.md#build-system-changes
-	if env.version == "1.0" then (
--}}
-			'/S', \
-			'/D=C:\julia' \
-{{ ) else ( -}}
 			'/SILENT', \
 			'/DIR=C:\julia' \
-{{ ) end -}}
 		); \
 	\
 	Write-Host 'Removing ...'; \
