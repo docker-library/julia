@@ -97,8 +97,7 @@ for version in "${versions[@]}"; do
 			else empty end,
 			if .arches | has("windows-amd64") then
 				"ltsc2022",
-				"1809",
-				"ltsc2016"
+				"1809"
 				| "windows/windowsservercore-" + .
 			else empty end
 		])
