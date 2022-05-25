@@ -51,44 +51,40 @@
   "1.7": {
     "arches": {
       "alpine-amd64": {
-        "sha256": "3bd653265f387450c796157629e6aa7aa4473d0169ef516a18e7b06b0301a7e1",
-        "url": "https://julialang-s3.julialang.org/bin/musl/x64/1.7/julia-1.7.2-musl-x86_64.tar.gz"
+        "sha256": "e8c7d8e94228c775661a3c5a5744c12b46b5cbda177c6ba0def9ed33705e6786",
+        "url": "https://julialang-s3.julialang.org/bin/musl/x64/1.7/julia-1.7.3-musl-x86_64.tar.gz"
       },
       "amd64": {
-        "sha256": "a75244724f3b2de0e7249c861fbf64078257c16fb4203be78f1cf4dd5973ba95",
-        "url": "https://julialang-s3.julialang.org/bin/linux/x64/1.7/julia-1.7.2-linux-x86_64.tar.gz"
+        "sha256": "9b2f4fa12d92b4dcc5d11dc66fb118c47681a76d3df8da064cc97573f2f5c739",
+        "url": "https://julialang-s3.julialang.org/bin/linux/x64/1.7/julia-1.7.3-linux-x86_64.tar.gz"
       },
       "arm32v7": {
-        "sha256": "837c93adf75a3e981eacf35f24f1d95cd2e4d9c490b84befd3865b2d558b730c",
-        "url": "https://julialang-s3.julialang.org/bin/linux/armv7l/1.7/julia-1.7.2-linux-armv7l.tar.gz"
+        "sha256": "e9de15c56b9b62727c69d10da4b8e90fa6609d2e94e9cfb9f99128dfb59a8677",
+        "url": "https://julialang-s3.julialang.org/bin/linux/armv7l/1.7/julia-1.7.3-linux-armv7l.tar.gz"
       },
       "arm64v8": {
-        "sha256": "69fd58b1e8f6f8a72053dcbeab2d2882258fe372a91c7287d38b9c217885821a",
-        "url": "https://julialang-s3.julialang.org/bin/linux/aarch64/1.7/julia-1.7.2-linux-aarch64.tar.gz"
+        "sha256": "d9e8b342c80ad1371520ed6d11f55b78aa60746737fbf57ecafd6a23b52dd71d",
+        "url": "https://julialang-s3.julialang.org/bin/linux/aarch64/1.7/julia-1.7.3-linux-aarch64.tar.gz"
       },
       "darwin-amd64": {
-        "sha256": "ae9d2970ed8987b9c48f166b15f02dbdae017f48e106522540add9030f106f0e",
-        "url": "https://julialang-s3.julialang.org/bin/mac/x64/1.7/julia-1.7.2-mac64.dmg"
-      },
-      "darwin-arm64v8": {
-        "sha256": "420d8e3839c3e39407f5365ceb3bfb84899a440915ec896390568015b3ffa4b9",
-        "url": "https://julialang-s3.julialang.org/bin/mac/aarch64/1.7/julia-1.7.2-macaarch64.dmg"
+        "sha256": "67799ec06cf57bca80a8a1c6e5a170485d3bfc0461b217699b0730da37d0656f",
+        "url": "https://julialang-s3.julialang.org/bin/mac/x64/1.7/julia-1.7.3-mac64.dmg"
       },
       "freebsd-amd64": {
-        "sha256": "56a6a33aea0244da22a8e3542349e0f1cac8fbd8d3ed96b4fabfa913801668bb",
-        "url": "https://julialang-s3.julialang.org/bin/freebsd/x64/1.7/julia-1.7.2-freebsd-x86_64.tar.gz"
+        "sha256": "514b343eff09d285838a3e93ba9038b635915f78b69babedb91e9ca470a3e077",
+        "url": "https://julialang-s3.julialang.org/bin/freebsd/x64/1.7/julia-1.7.3-freebsd-x86_64.tar.gz"
       },
       "i386": {
-        "sha256": "f5f8e6cbaf0acd473a5e13c23c80f0672207eb86408178fec221f4f7fb88f6d1",
-        "url": "https://julialang-s3.julialang.org/bin/linux/x86/1.7/julia-1.7.2-linux-i686.tar.gz"
+        "sha256": "c1e1a4f9a53affee269c7e740cb8bd46740f9021414459c3ab3bb2c540d9d499",
+        "url": "https://julialang-s3.julialang.org/bin/linux/x86/1.7/julia-1.7.3-linux-i686.tar.gz"
       },
       "windows-amd64": {
-        "sha256": "bede21e00130c2dcb6973a968b7ed43c35d69712008a95bb08d5536d3c9e2585",
-        "url": "https://julialang-s3.julialang.org/bin/winnt/x64/1.7/julia-1.7.2-win64.exe"
+        "sha256": "ef5915eaf35bb71359072e8c41f84fa73f1059fecb198e7fc838270d4ba5bbae",
+        "url": "https://julialang-s3.julialang.org/bin/winnt/x64/1.7/julia-1.7.3-win64.exe"
       },
       "windows-i386": {
-        "sha256": "0a16fe4407a0c0f70657bbf01851057eb2ab1f76b25353a870c270e3ebf9faa2",
-        "url": "https://julialang-s3.julialang.org/bin/winnt/x86/1.7/julia-1.7.2-win32.exe"
+        "sha256": "71999df72f1886ca9e0240c17ff01c69769979b5cec0a472c8e07ef7266d5303",
+        "url": "https://julialang-s3.julialang.org/bin/winnt/x86/1.7/julia-1.7.3-win32.exe"
       }
     },
     "variants": [
@@ -99,7 +95,7 @@
       "windows/windowsservercore-ltsc2022",
       "windows/windowsservercore-1809"
     ],
-    "version": "1.7.2"
+    "version": "1.7.3"
   },
   "1.8-rc": {
     "arches": {
