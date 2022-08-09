@@ -18,8 +18,8 @@
         "url": "https://julialang-s3.julialang.org/bin/linux/aarch64/1.6/julia-1.6.7-linux-aarch64.tar.gz"
       },
       "darwin-amd64": {
-        "sha256": "e7b3ad41ec6dd1dd7e6d811ff71682680e056e0f82fc6b17710546630092915a",
-        "url": "https://julialang-s3.julialang.org/bin/mac/x64/1.6/julia-1.6.7-mac64.dmg"
+        "sha256": "63d617d677b0d271110623d9184c486a1c5d82042bb6432776053439601285ad",
+        "url": "https://julialang-s3.julialang.org/bin/mac/x64/1.6/julia-1.6.7-mac64.tar.gz"
       },
       "freebsd-amd64": {
         "sha256": "a9f4b3e95dcdf3f8608b0c8e687c66a0df37ec7c2bd697f32faab03d042d388f",
