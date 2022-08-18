@@ -48,55 +48,6 @@
     ],
     "version": "1.6.7"
   },
-  "1.7": {
-    "arches": {
-      "alpine-amd64": {
-        "sha256": "e8c7d8e94228c775661a3c5a5744c12b46b5cbda177c6ba0def9ed33705e6786",
-        "url": "https://julialang-s3.julialang.org/bin/musl/x64/1.7/julia-1.7.3-musl-x86_64.tar.gz"
-      },
-      "amd64": {
-        "sha256": "9b2f4fa12d92b4dcc5d11dc66fb118c47681a76d3df8da064cc97573f2f5c739",
-        "url": "https://julialang-s3.julialang.org/bin/linux/x64/1.7/julia-1.7.3-linux-x86_64.tar.gz"
-      },
-      "arm32v7": {
-        "sha256": "e9de15c56b9b62727c69d10da4b8e90fa6609d2e94e9cfb9f99128dfb59a8677",
-        "url": "https://julialang-s3.julialang.org/bin/linux/armv7l/1.7/julia-1.7.3-linux-armv7l.tar.gz"
-      },
-      "arm64v8": {
-        "sha256": "d9e8b342c80ad1371520ed6d11f55b78aa60746737fbf57ecafd6a23b52dd71d",
-        "url": "https://julialang-s3.julialang.org/bin/linux/aarch64/1.7/julia-1.7.3-linux-aarch64.tar.gz"
-      },
-      "darwin-amd64": {
-        "sha256": "03683db437cd7b54cc95fa2071c5205f0c1dfe39adecde10e1bdebb4d2416493",
-        "url": "https://julialang-s3.julialang.org/bin/mac/x64/1.7/julia-1.7.3-mac64.tar.gz"
-      },
-      "freebsd-amd64": {
-        "sha256": "514b343eff09d285838a3e93ba9038b635915f78b69babedb91e9ca470a3e077",
-        "url": "https://julialang-s3.julialang.org/bin/freebsd/x64/1.7/julia-1.7.3-freebsd-x86_64.tar.gz"
-      },
-      "i386": {
-        "sha256": "c1e1a4f9a53affee269c7e740cb8bd46740f9021414459c3ab3bb2c540d9d499",
-        "url": "https://julialang-s3.julialang.org/bin/linux/x86/1.7/julia-1.7.3-linux-i686.tar.gz"
-      },
-      "windows-amd64": {
-        "sha256": "ef5915eaf35bb71359072e8c41f84fa73f1059fecb198e7fc838270d4ba5bbae",
-        "url": "https://julialang-s3.julialang.org/bin/winnt/x64/1.7/julia-1.7.3-win64.exe"
-      },
-      "windows-i386": {
-        "sha256": "71999df72f1886ca9e0240c17ff01c69769979b5cec0a472c8e07ef7266d5303",
-        "url": "https://julialang-s3.julialang.org/bin/winnt/x86/1.7/julia-1.7.3-win32.exe"
-      }
-    },
-    "variants": [
-      "bullseye",
-      "buster",
-      "alpine3.16",
-      "alpine3.15",
-      "windows/windowsservercore-ltsc2022",
-      "windows/windowsservercore-1809"
-    ],
-    "version": "1.7.3"
-  },
   "1.8": {
     "arches": {
       "alpine-amd64": {
