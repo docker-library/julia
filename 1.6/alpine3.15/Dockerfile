@@ -54,4 +54,6 @@ RUN set -eux; \
 # smoke test
 	julia --version
 
+COPY docker-entrypoint.sh /usr/local/bin/
+ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["julia"]

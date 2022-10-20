@@ -52,6 +52,7 @@ for version; do
 
 			*)
 				template='Dockerfile-linux.template'
+				cp -a docker-entrypoint.sh "$version/$dir/"
 				;;
 		esac
 
