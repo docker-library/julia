@@ -96,5 +96,54 @@
       "windows/windowsservercore-1809"
     ],
     "version": "1.8.3"
+  },
+  "1.9-rc": {
+    "arches": {
+      "alpine-amd64": {
+        "sha256": "21dc88b2bb12511b3fd07f11a3f3548bfd48ecbfa43df46c83b18e1b08be7298",
+        "url": "https://julialang-s3.julialang.org/bin/musl/x64/1.9/julia-1.9.0-alpha1-musl-x86_64.tar.gz"
+      },
+      "amd64": {
+        "sha256": "c657ed4e792f300d45d1ea5ffb71d052cae4e0d653142b277a3cba4d2cecfd7d",
+        "url": "https://julialang-s3.julialang.org/bin/linux/x64/1.9/julia-1.9.0-alpha1-linux-x86_64.tar.gz"
+      },
+      "arm64v8": {
+        "sha256": "595451736674c8f2e1cd8be514901cf47043ffc611078c1edcca7d7901ffafb8",
+        "url": "https://julialang-s3.julialang.org/bin/linux/aarch64/1.9/julia-1.9.0-alpha1-linux-aarch64.tar.gz"
+      },
+      "darwin-amd64": {
+        "sha256": "8656e67179f7692b3091a45ebd5a9e043a57d4d925bd0b68a254d897ffbd388c",
+        "url": "https://julialang-s3.julialang.org/bin/mac/x64/1.9/julia-1.9.0-alpha1-mac64.tar.gz"
+      },
+      "darwin-arm64v8": {
+        "sha256": "f99491de67eb1e64e0309a7a11d0cc7a91717145e010fded7546774264cb0755",
+        "url": "https://julialang-s3.julialang.org/bin/mac/aarch64/1.9/julia-1.9.0-alpha1-macaarch64.tar.gz"
+      },
+      "freebsd-amd64": {
+        "sha256": "abe3bede1463b717b030be54212671cc5e9b71f2c12044a695bd2b376792879b",
+        "url": "https://julialang-s3.julialang.org/bin/freebsd/x64/1.9/julia-1.9.0-alpha1-freebsd-x86_64.tar.gz"
+      },
+      "i386": {
+        "sha256": "c8b9312e9b210974a26e9abe3a6d70be9e30f1603a227a11bb2ce1c62351df07",
+        "url": "https://julialang-s3.julialang.org/bin/linux/x86/1.9/julia-1.9.0-alpha1-linux-i686.tar.gz"
+      },
+      "windows-amd64": {
+        "sha256": "b9cf18544d67e015fc8679e10deac29bef56758f1a88021ed485b5719bca7eae",
+        "url": "https://julialang-s3.julialang.org/bin/winnt/x64/1.9/julia-1.9.0-alpha1-win64.exe"
+      },
+      "windows-i386": {
+        "sha256": "4f7f98acc18a23e5a2b6659061920e2e5710c4a0f99efac7ade0df6826607f47",
+        "url": "https://julialang-s3.julialang.org/bin/winnt/x86/1.9/julia-1.9.0-alpha1-win32.exe"
+      }
+    },
+    "variants": [
+      "bullseye",
+      "buster",
+      "alpine3.16",
+      "alpine3.15",
+      "windows/windowsservercore-ltsc2022",
+      "windows/windowsservercore-1809"
+    ],
+    "version": "1.9.0-alpha1"
   }
 }
