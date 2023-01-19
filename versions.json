@@ -78,6 +78,10 @@
         "sha256": "f0edd61970710333cb5ac6491fbbc859436e5e9e84b014ae04f291bddf6a7e21",
         "url": "https://julialang-s3.julialang.org/bin/linux/x86/1.8/julia-1.8.5-linux-i686.tar.gz"
       },
+      "ppc64le": {
+        "sha256": "13c121362e73cda8049a9b51b15c6d0d1dc66803db45ab1d5c46ea9c1b7440df",
+        "url": "https://julialang-s3.julialang.org/bin/linux/ppc64le/1.8/julia-1.8.5-linux-ppc64le.tar.gz"
+      },
       "windows-amd64": {
         "sha256": "866e160d46c85167d10e8a925776c2fb1cea0f668eb8c80a605842fd35ef28b5",
         "url": "https://julialang-s3.julialang.org/bin/winnt/x64/1.8/julia-1.8.5-win64.exe"
