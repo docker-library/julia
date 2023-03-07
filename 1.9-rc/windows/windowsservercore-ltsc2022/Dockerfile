@@ -9,9 +9,9 @@ FROM mcr.microsoft.com/windows/servercore:ltsc2022
 # $ProgressPreference: https://github.com/PowerShell/PowerShell/issues/2138#issuecomment-251261324
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
-ENV JULIA_VERSION 1.9.0-beta4
-ENV JULIA_URL https://julialang-s3.julialang.org/bin/winnt/x64/1.9/julia-1.9.0-beta4-win64.exe
-ENV JULIA_SHA256 c298228ad482b9941f496b88cffa4d7db516be7bae576e9d83a2bff435435ba5
+ENV JULIA_VERSION 1.9.0-rc1
+ENV JULIA_URL https://julialang-s3.julialang.org/bin/winnt/x64/1.9/julia-1.9.0-rc1-win64.exe
+ENV JULIA_SHA256 8bcb9ac062b86407c16f21052c05cc4a414a2623e708ccf4c41394857c849063
 
 RUN Write-Host ('Downloading {0} ...' -f $env:JULIA_URL); \
 	[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; \
