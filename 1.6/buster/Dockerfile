@@ -28,14 +28,11 @@ ENV JULIA_VERSION 1.6.7
 RUN set -eux; \
 	\
 	savedAptMark="$(apt-mark showmanual)"; \
-	if ! command -v gpg > /dev/null; then \
-		apt-get update; \
-		apt-get install -y --no-install-recommends \
-			gnupg \
-			dirmngr \
-		; \
-		rm -rf /var/lib/apt/lists/*; \
-	fi; \
+	apt-get update; \
+	apt-get install -y --no-install-recommends \
+		gnupg \
+	; \
+	rm -rf /var/lib/apt/lists/*; \
 	\
 # https://julialang.org/downloads/#julia-command-line-version
 # https://julialang-s3.julialang.org/bin/checksums/julia-1.6.7.sha256
@@ -71,7 +68,7 @@ RUN set -eux; \
 	export GNUPGHOME="$(mktemp -d)"; \
 	gpg --batch --keyserver keyserver.ubuntu.com --recv-keys "$JULIA_GPG"; \
 	gpg --batch --verify julia.tar.gz.asc julia.tar.gz; \
-	command -v gpgconf > /dev/null && gpgconf --kill all; \
+	gpgconf --kill all; \
 	rm -rf "$GNUPGHOME" julia.tar.gz.asc; \
 	\
 	mkdir "$JULIA_PATH"; \
