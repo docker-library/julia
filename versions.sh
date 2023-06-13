@@ -88,8 +88,8 @@ for version in "${versions[@]}"; do
 		$doc
 		| del(.major)
 		| .variants = ([
+			"bookworm",
 			"bullseye",
-			"buster",
 			if .arches | keys | any(startswith("alpine-")) then
 				"3.18",
 				"3.17"

@@ -39,8 +39,8 @@
       }
     },
     "variants": [
+      "bookworm",
       "bullseye",
-      "buster",
       "alpine3.18",
       "alpine3.17",
       "windows/windowsservercore-ltsc2022",
@@ -92,8 +92,8 @@
       }
     },
     "variants": [
+      "bookworm",
       "bullseye",
-      "buster",
       "alpine3.18",
       "alpine3.17",
       "windows/windowsservercore-ltsc2022",

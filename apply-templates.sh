@@ -38,7 +38,7 @@ for version; do
 	for dir in "${variants[@]}"; do
 		mkdir -p "$version/$dir"
 
-		variant="$(basename "$dir")" # "buster", "windowsservercore-1809", etc
+		variant="$(basename "$dir")" # "bookworm", "windowsservercore-1809", etc
 		export variant
 
 		case "$dir" in
