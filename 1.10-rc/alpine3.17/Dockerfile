@@ -14,19 +14,19 @@ ENV PATH $JULIA_PATH/bin:$PATH
 ENV JULIA_GPG 3673DF529D9049477F76B37566E3C7DC03D6E495
 
 # https://julialang.org/downloads/
-ENV JULIA_VERSION 1.10.0-alpha1
+ENV JULIA_VERSION 1.10.0-beta1
 
 RUN set -eux; \
 	\
 	apk add --no-cache --virtual .fetch-deps gnupg; \
 	\
 # https://julialang.org/downloads/#julia-command-line-version
-# https://julialang-s3.julialang.org/bin/checksums/julia-1.10.0-alpha1.sha256
+# https://julialang-s3.julialang.org/bin/checksums/julia-1.10.0-beta1.sha256
 	arch="$(apk --print-arch)"; \
 	case "$arch" in \
 		'x86_64') \
-			url='https://julialang-s3.julialang.org/bin/musl/x64/1.10/julia-1.10.0-alpha1-musl-x86_64.tar.gz'; \
-			sha256='bb535675576f3887eef199ed2b3cb46ea6e0c22fdbf6e1b001e4635781ea5d7b'; \
+			url='https://julialang-s3.julialang.org/bin/musl/x64/1.10/julia-1.10.0-beta1-musl-x86_64.tar.gz'; \
+			sha256='dfe4eb34da27e6bc8f036473b1765aa3e90d954a226a2c6b16c95f9081d94531'; \
 			;; \
 		*) \
 			echo >&2 "error: current architecture ($arch) does not have a corresponding Julia binary release"; \
