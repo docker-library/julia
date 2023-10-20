@@ -177,6 +177,9 @@ for version; do
 			GitCommit: $commit
 			Directory: $dir
 		EOE
-		[ -z "$constraints" ] || echo "Constraints: $constraints"
+		[ -z "$constraints" ] || {
+			echo "Constraints: $constraints";
+			echo 'Builder: classic' # no Windows support in BuildKit (yet)
+		}
 	done
 done
