@@ -2,44 +2,40 @@
   "1.10-rc": {
     "arches": {
       "alpine-amd64": {
-        "sha256": "027debab163541e77e52df5dfefd85542d4c5c0f90a0acdb9507088cd3dcdac1",
-        "url": "https://julialang-s3.julialang.org/bin/musl/x64/1.10/julia-1.10.0-beta3-musl-x86_64.tar.gz"
+        "sha256": "07ca89f2a15db5e42a6e8d3325d093ddf7786ab2a4788ff9a5ad52bed40334c6",
+        "url": "https://julialang-s3.julialang.org/bin/musl/x64/1.10/julia-1.10.0-rc1-musl-x86_64.tar.gz"
       },
       "amd64": {
-        "sha256": "f6fb0b8625f608c6b586f96e6f403da827c5f69ee0fa72746e0c3b5b6eb29022",
-        "url": "https://julialang-s3.julialang.org/bin/linux/x64/1.10/julia-1.10.0-beta3-linux-x86_64.tar.gz"
+        "sha256": "fab4b6ae9f39b0a59e4d98db73b563521716cdcfe34247638146f208a57a5b5b",
+        "url": "https://julialang-s3.julialang.org/bin/linux/x64/1.10/julia-1.10.0-rc1-linux-x86_64.tar.gz"
       },
       "arm64v8": {
-        "sha256": "9ee2d8ff367f17efa7d7279415622d85ae3e592a0938cc2c90a41f6d6f5a28d2",
-        "url": "https://julialang-s3.julialang.org/bin/linux/aarch64/1.10/julia-1.10.0-beta3-linux-aarch64.tar.gz"
+        "sha256": "9388c0e8f16b19233a5a80d09d9f16cdb4f94c3b5f6ee9e0b6a0bf852299c30a",
+        "url": "https://julialang-s3.julialang.org/bin/linux/aarch64/1.10/julia-1.10.0-rc1-linux-aarch64.tar.gz"
       },
       "darwin-amd64": {
-        "sha256": "a1d95cc687757fae2c10ea6b0f3a881bd37e57a7aa4b91f4d47b10b3d0f3c1d0",
-        "url": "https://julialang-s3.julialang.org/bin/mac/x64/1.10/julia-1.10.0-beta3-mac64.tar.gz"
+        "sha256": "e7e7694fffef2eaa33e366200015e268cfaee5ea93b69ec43829bcea0fc8d142",
+        "url": "https://julialang-s3.julialang.org/bin/mac/x64/1.10/julia-1.10.0-rc1-mac64.tar.gz"
       },
       "darwin-arm64v8": {
-        "sha256": "f3df9b4a186123a8b3aa1fbdc3c2f7702dcb92216b69c1f06c943a4888553c0f",
-        "url": "https://julialang-s3.julialang.org/bin/mac/aarch64/1.10/julia-1.10.0-beta3-macaarch64.tar.gz"
+        "sha256": "935e2cd77e92539abce8a8520a84593301bbfa1d9abb1678e22b3eeffab451b0",
+        "url": "https://julialang-s3.julialang.org/bin/mac/aarch64/1.10/julia-1.10.0-rc1-macaarch64.tar.gz"
       },
       "freebsd-amd64": {
-        "sha256": "3de2e790dd377892f5ba91c0de7a9f936d13e06815663871d99808e70cf16843",
-        "url": "https://julialang-s3.julialang.org/bin/freebsd/x64/1.10/julia-1.10.0-beta3-freebsd-x86_64.tar.gz"
+        "sha256": "93057ca0344266157b10544ddbd71ae56f8141ca444a0b468a3d9a3faf3e08b7",
+        "url": "https://julialang-s3.julialang.org/bin/freebsd/x64/1.10/julia-1.10.0-rc1-freebsd-x86_64.tar.gz"
       },
       "i386": {
-        "sha256": "2a18c67f4b3222018b74c5fc0d0c2211784fbd4905c43b55fa714b774b941614",
-        "url": "https://julialang-s3.julialang.org/bin/linux/x86/1.10/julia-1.10.0-beta3-linux-i686.tar.gz"
-      },
-      "ppc64le": {
-        "sha256": "40c541540f610736813750017ddc7292067438190a1a78ba30604abcd2bc4818",
-        "url": "https://julialang-s3.julialang.org/bin/linux/ppc64le/1.10/julia-1.10.0-beta3-linux-ppc64le.tar.gz"
+        "sha256": "1c137371781d126d50871d394a70765ba610c8aaf2b70d0d87004c2e41e290e6",
+        "url": "https://julialang-s3.julialang.org/bin/linux/x86/1.10/julia-1.10.0-rc1-linux-i686.tar.gz"
       },
       "windows-amd64": {
-        "sha256": "bd27c28ed52d4ec9985f90c649271b73fbd8048390c75b63fb329ebc9ed8e5c7",
-        "url": "https://julialang-s3.julialang.org/bin/winnt/x64/1.10/julia-1.10.0-beta3-win64.exe"
+        "sha256": "1d9c521623cc7064c3b8f5e16d0152d7c3a858bee58138411f7e73beffc9a21e",
+        "url": "https://julialang-s3.julialang.org/bin/winnt/x64/1.10/julia-1.10.0-rc1-win64.exe"
       },
       "windows-i386": {
-        "sha256": "3cb0aacd9ebeb5c8970537431453d7d53714c04758f571e6497dca9ad6d4b0aa",
-        "url": "https://julialang-s3.julialang.org/bin/winnt/x86/1.10/julia-1.10.0-beta3-win32.exe"
+        "sha256": "809eb7097c07ff99b8326f85e12fbc69de89fb05c6f555fe7e956b5a8282604a",
+        "url": "https://julialang-s3.julialang.org/bin/winnt/x86/1.10/julia-1.10.0-rc1-win32.exe"
       }
     },
     "variants": [
@@ -50,7 +46,7 @@
       "windows/windowsservercore-ltsc2022",
       "windows/windowsservercore-1809"
     ],
-    "version": "1.10.0-beta3"
+    "version": "1.10.0-rc1"
   },
   "1.6": {
     "arches": {
