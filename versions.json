@@ -100,44 +100,44 @@
   "1.9": {
     "arches": {
       "alpine-amd64": {
-        "sha256": "90fbfb8621a523694de0280a1cd5e2040a49f4bd41e403f789caee945e63d03b",
-        "url": "https://julialang-s3.julialang.org/bin/musl/x64/1.9/julia-1.9.3-musl-x86_64.tar.gz"
+        "sha256": "cfee0c02e470fd3e49a6d43b071ec905dec3a81d1ef377c0f0116f5b9920abe9",
+        "url": "https://julialang-s3.julialang.org/bin/musl/x64/1.9/julia-1.9.4-musl-x86_64.tar.gz"
       },
       "amd64": {
-        "sha256": "d76670cc9ba3e0fd4c1545dd3d00269c0694976a1176312795ebce1692d323d1",
-        "url": "https://julialang-s3.julialang.org/bin/linux/x64/1.9/julia-1.9.3-linux-x86_64.tar.gz"
+        "sha256": "07d20c4c2518833e2265ca0acee15b355463361aa4efdab858dad826cf94325c",
+        "url": "https://julialang-s3.julialang.org/bin/linux/x64/1.9/julia-1.9.4-linux-x86_64.tar.gz"
       },
       "arm64v8": {
-        "sha256": "55437879f6b98470d96c4048b922501b643dfffb8865abeb90c7333a83df7524",
-        "url": "https://julialang-s3.julialang.org/bin/linux/aarch64/1.9/julia-1.9.3-linux-aarch64.tar.gz"
+        "sha256": "541d0c5a9378f8d2fc384bb8595fc6ffe20d61054629a6e314fb2f8dfe2f2ade",
+        "url": "https://julialang-s3.julialang.org/bin/linux/aarch64/1.9/julia-1.9.4-linux-aarch64.tar.gz"
       },
       "darwin-amd64": {
-        "sha256": "6eea87748424488226090d1e7d553e72ab106a873d63c732fc710a3d080abb97",
-        "url": "https://julialang-s3.julialang.org/bin/mac/x64/1.9/julia-1.9.3-mac64.tar.gz"
+        "sha256": "67eec264f6afc9e9bf72c0f62c84d91c2ebdfaed6a0aa11606e3c983d278b441",
+        "url": "https://julialang-s3.julialang.org/bin/mac/x64/1.9/julia-1.9.4-mac64.tar.gz"
       },
       "darwin-arm64v8": {
-        "sha256": "f518e38d7bd5b37766fb051916bd295993aa4b52a47018f4c98b5fde721ced87",
-        "url": "https://julialang-s3.julialang.org/bin/mac/aarch64/1.9/julia-1.9.3-macaarch64.tar.gz"
+        "sha256": "67542975e86102eec95bc4bb7c30c5d8c7ea9f9a0b388f0e10f546945363b01a",
+        "url": "https://julialang-s3.julialang.org/bin/mac/aarch64/1.9/julia-1.9.4-macaarch64.tar.gz"
       },
       "freebsd-amd64": {
-        "sha256": "334da6d63945ff42e8dad62321e5a6f236ce3e08a617544c6638c39965213cfa",
-        "url": "https://julialang-s3.julialang.org/bin/freebsd/x64/1.9/julia-1.9.3-freebsd-x86_64.tar.gz"
+        "sha256": "bf9e299d664566be88dc4121c3a5e2fe8403d93832ee7f757ba9f54461782c5d",
+        "url": "https://julialang-s3.julialang.org/bin/freebsd/x64/1.9/julia-1.9.4-freebsd-x86_64.tar.gz"
       },
       "i386": {
-        "sha256": "e968d04a8b91e2bdcda307dd9dc26e7589b6c8f9598b2410856c95a706d84b10",
-        "url": "https://julialang-s3.julialang.org/bin/linux/x86/1.9/julia-1.9.3-linux-i686.tar.gz"
+        "sha256": "2b045a30c6ed8b14a5f4b7ecfb74ef2af7d70b85c9b513cd347886c8dace39bd",
+        "url": "https://julialang-s3.julialang.org/bin/linux/x86/1.9/julia-1.9.4-linux-i686.tar.gz"
       },
       "ppc64le": {
-        "sha256": "15bcf163813d9a561ef50c77d1135135455c85f2dbd27a910400332edb959dc4",
-        "url": "https://julialang-s3.julialang.org/bin/linux/ppc64le/1.9/julia-1.9.3-linux-ppc64le.tar.gz"
+        "sha256": "a5da86c0f0f4ef6d8645f74d8397a6e833831ee212de9edc52e4aefe8f368494",
+        "url": "https://julialang-s3.julialang.org/bin/linux/ppc64le/1.9/julia-1.9.4-linux-ppc64le.tar.gz"
       },
       "windows-amd64": {
-        "sha256": "eb5a6464dcb1653143caf117a76f9e9126da8c960b737d1c82e4c46d165061f0",
-        "url": "https://julialang-s3.julialang.org/bin/winnt/x64/1.9/julia-1.9.3-win64.exe"
+        "sha256": "8a491b31a8430c3662dff34bf349653e2d13ef98a4dcf7caa740359b6c5fef3e",
+        "url": "https://julialang-s3.julialang.org/bin/winnt/x64/1.9/julia-1.9.4-win64.exe"
       },
       "windows-i386": {
-        "sha256": "d4e67e0fe3ff626c4b9e21cc71c23132b992a8ae4f0af54e11dea163394a3356",
-        "url": "https://julialang-s3.julialang.org/bin/winnt/x86/1.9/julia-1.9.3-win32.exe"
+        "sha256": "cae2c1da0da7f43f08620896904b5b13bcdce3ed49dc5a5e9897ee437848e2c2",
+        "url": "https://julialang-s3.julialang.org/bin/winnt/x86/1.9/julia-1.9.4-win32.exe"
       }
     },
     "variants": [
@@ -148,6 +148,6 @@
       "windows/windowsservercore-ltsc2022",
       "windows/windowsservercore-1809"
     ],
-    "version": "1.9.3"
+    "version": "1.9.4"
   }
 }
