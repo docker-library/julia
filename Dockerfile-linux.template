@@ -1,3 +1,4 @@
+{{ include ".template-helper-functions" -}}
 {{
 	def is_alpine:
 		env.variant | startswith("alpine")
@@ -121,7 +122,21 @@ RUN set -eux; \
 {{ ) end -}}
 	\
 # smoke test
-	julia --version
+	julia --version; \
+	\
+	echo {{
+		{
+			name: "julia",
+			version: .version,
+			params: {
+				os_name: (if is_alpine then "alpine" else "debian" end),
+				os_version: env.variant | ltrimstr("alpine")
+			},
+			licenses: [
+				"MIT"
+			]
+		} | sbom | tostring | @sh
+	}} > $JULIA_PATH/julia.spdx.json;
 
 COPY docker-entrypoint.sh /usr/local/bin/
 ENTRYPOINT ["docker-entrypoint.sh"]
