@@ -23,7 +23,7 @@ ENV PATH $JULIA_PATH/bin:$PATH
 ENV JULIA_GPG 3673DF529D9049477F76B37566E3C7DC03D6E495
 
 # https://julialang.org/downloads/
-ENV JULIA_VERSION 1.10.1
+ENV JULIA_VERSION 1.10.2
 
 RUN set -eux; \
 	\
@@ -35,20 +35,20 @@ RUN set -eux; \
 	rm -rf /var/lib/apt/lists/*; \
 	\
 # https://julialang.org/downloads/#julia-command-line-version
-# https://julialang-s3.julialang.org/bin/checksums/julia-1.10.1.sha256
+# https://julialang-s3.julialang.org/bin/checksums/julia-1.10.2.sha256
 	arch="$(dpkg --print-architecture)"; \
 	case "$arch" in \
 		'amd64') \
-			url='https://julialang-s3.julialang.org/bin/linux/x64/1.10/julia-1.10.1-linux-x86_64.tar.gz'; \
-			sha256='fe924258e55d074410b134195cf6b85cbe8f307fcd05a4fdd23f8944c5941a70'; \
+			url='https://julialang-s3.julialang.org/bin/linux/x64/1.10/julia-1.10.2-linux-x86_64.tar.gz'; \
+			sha256='51bccc9bb245197f24e6b2394e6aa69c0dc1e41b4e300b796e17da34ef64db1e'; \
 			;; \
 		'arm64') \
-			url='https://julialang-s3.julialang.org/bin/linux/aarch64/1.10/julia-1.10.1-linux-aarch64.tar.gz'; \
-			sha256='67e912a2b8ae0fd2469a1a42c7d70b18cdf30b06dc717653fac64b710ca0575e'; \
+			url='https://julialang-s3.julialang.org/bin/linux/aarch64/1.10/julia-1.10.2-linux-aarch64.tar.gz'; \
+			sha256='f319ff2812bece0918cb9ea6e0df54cc9412fc5ef8c0589b6a4fea485c07535d'; \
 			;; \
 		'i386') \
-			url='https://julialang-s3.julialang.org/bin/linux/x86/1.10/julia-1.10.1-linux-i686.tar.gz'; \
-			sha256='46ae06f5690b4812e091f8e2a1b8a1caf849b5c842e8c7c3b8e474aaa7302526'; \
+			url='https://julialang-s3.julialang.org/bin/linux/x86/1.10/julia-1.10.2-linux-i686.tar.gz'; \
+			sha256='1699988a1733375991937b78689339e8b8117fb0a1700b54a2c984829ce646e6'; \
 			;; \
 		*) \
 			echo >&2 "error: current architecture ($arch) does not have a corresponding Julia binary release"; \
@@ -78,7 +78,7 @@ RUN set -eux; \
 # smoke test
 	julia --version; \
 	\
-	echo '{"spdxVersion":"SPDX-2.3","SPDXID":"SPDXRef-DOCUMENT","name":"julia-sbom","packages":[{"name":"julia","versionInfo":"1.10.1","SPDXID":"SPDXRef-Package--julia","externalRefs":[{"referenceCategory":"PACKAGE-MANAGER","referenceType":"purl","referenceLocator":"pkg:generic/julia@1.10.1?os_name=debian&os_version=bookworm"}],"licenseDeclared":"MIT"}]}' > $JULIA_PATH/julia.spdx.json;
+	echo '{"spdxVersion":"SPDX-2.3","SPDXID":"SPDXRef-DOCUMENT","name":"julia-sbom","packages":[{"name":"julia","versionInfo":"1.10.2","SPDXID":"SPDXRef-Package--julia","externalRefs":[{"referenceCategory":"PACKAGE-MANAGER","referenceType":"purl","referenceLocator":"pkg:generic/julia@1.10.2?os_name=debian&os_version=bookworm"}],"licenseDeclared":"MIT"}]}' > $JULIA_PATH/julia.spdx.json;
 
 COPY docker-entrypoint.sh /usr/local/bin/
 ENTRYPOINT ["docker-entrypoint.sh"]

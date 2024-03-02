@@ -14,19 +14,19 @@ ENV PATH $JULIA_PATH/bin:$PATH
 ENV JULIA_GPG 3673DF529D9049477F76B37566E3C7DC03D6E495
 
 # https://julialang.org/downloads/
-ENV JULIA_VERSION 1.10.1
+ENV JULIA_VERSION 1.10.2
 
 RUN set -eux; \
 	\
 	apk add --no-cache --virtual .fetch-deps gnupg; \
 	\
 # https://julialang.org/downloads/#julia-command-line-version
-# https://julialang-s3.julialang.org/bin/checksums/julia-1.10.1.sha256
+# https://julialang-s3.julialang.org/bin/checksums/julia-1.10.2.sha256
 	arch="$(apk --print-arch)"; \
 	case "$arch" in \
 		'x86_64') \
-			url='https://julialang-s3.julialang.org/bin/musl/x64/1.10/julia-1.10.1-musl-x86_64.tar.gz'; \
-			sha256='48e643c431f156e0cec440e3881f09dd78491c59de7804c73f470fba8cd64d1d'; \
+			url='https://julialang-s3.julialang.org/bin/musl/x64/1.10/julia-1.10.2-musl-x86_64.tar.gz'; \
+			sha256='c5fe3500154e73a44cc09e4d4a40ffe4374b8914c82e5c1ccde44d36feb6f5e6'; \
 			;; \
 		*) \
 			echo >&2 "error: current architecture ($arch) does not have a corresponding Julia binary release"; \
@@ -54,7 +54,7 @@ RUN set -eux; \
 # smoke test
 	julia --version; \
 	\
-	echo '{"spdxVersion":"SPDX-2.3","SPDXID":"SPDXRef-DOCUMENT","name":"julia-sbom","packages":[{"name":"julia","versionInfo":"1.10.1","SPDXID":"SPDXRef-Package--julia","externalRefs":[{"referenceCategory":"PACKAGE-MANAGER","referenceType":"purl","referenceLocator":"pkg:generic/julia@1.10.1?os_name=alpine&os_version=3.18"}],"licenseDeclared":"MIT"}]}' > $JULIA_PATH/julia.spdx.json;
+	echo '{"spdxVersion":"SPDX-2.3","SPDXID":"SPDXRef-DOCUMENT","name":"julia-sbom","packages":[{"name":"julia","versionInfo":"1.10.2","SPDXID":"SPDXRef-Package--julia","externalRefs":[{"referenceCategory":"PACKAGE-MANAGER","referenceType":"purl","referenceLocator":"pkg:generic/julia@1.10.2?os_name=alpine&os_version=3.18"}],"licenseDeclared":"MIT"}]}' > $JULIA_PATH/julia.spdx.json;
 
 COPY docker-entrypoint.sh /usr/local/bin/
 ENTRYPOINT ["docker-entrypoint.sh"]
