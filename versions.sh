@@ -73,7 +73,7 @@ for version in "${versions[@]}"; do
 	export version rcVersion
 
 	if \
-		! doc="$(jq <<<"$juliaVersions" -c '
+		! doc="$(jq <<<"$juliaVersions" -ce '
 			[ .[] | select(.major == env.version) ][-1]
 		')" \
 		|| ! fullVersion="$(jq <<<"$doc" -r '.version')" \
