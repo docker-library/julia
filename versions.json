@@ -2,40 +2,44 @@
   "1.10": {
     "arches": {
       "alpine-amd64": {
-        "sha256": "c5fe3500154e73a44cc09e4d4a40ffe4374b8914c82e5c1ccde44d36feb6f5e6",
-        "url": "https://julialang-s3.julialang.org/bin/musl/x64/1.10/julia-1.10.2-musl-x86_64.tar.gz"
+        "sha256": "2bb735b3fdef62a4370a79b91239c47d8e8b923d5263466e63a2abc80faee9e5",
+        "url": "https://julialang-s3.julialang.org/bin/musl/x64/1.10/julia-1.10.3-musl-x86_64.tar.gz"
       },
       "amd64": {
-        "sha256": "51bccc9bb245197f24e6b2394e6aa69c0dc1e41b4e300b796e17da34ef64db1e",
-        "url": "https://julialang-s3.julialang.org/bin/linux/x64/1.10/julia-1.10.2-linux-x86_64.tar.gz"
+        "sha256": "81b910c922fff0e27ae1f256f2cc803db81f3960215281eddd2d484721928c70",
+        "url": "https://julialang-s3.julialang.org/bin/linux/x64/1.10/julia-1.10.3-linux-x86_64.tar.gz"
       },
       "arm64v8": {
-        "sha256": "f319ff2812bece0918cb9ea6e0df54cc9412fc5ef8c0589b6a4fea485c07535d",
-        "url": "https://julialang-s3.julialang.org/bin/linux/aarch64/1.10/julia-1.10.2-linux-aarch64.tar.gz"
+        "sha256": "2d52a61826872b3170c65f99a954bd9d21a31211cb50948056d924f811a0024f",
+        "url": "https://julialang-s3.julialang.org/bin/linux/aarch64/1.10/julia-1.10.3-linux-aarch64.tar.gz"
       },
       "darwin-amd64": {
-        "sha256": "52679b9285b9aa8354afade8cc5a6c98d30af31ee72e4e879d17cef5dd4d4213",
-        "url": "https://julialang-s3.julialang.org/bin/mac/x64/1.10/julia-1.10.2-mac64.tar.gz"
+        "sha256": "af61600db0abdc56fffb1b47cd18c30213b8925796546b53b657e164126082b4",
+        "url": "https://julialang-s3.julialang.org/bin/mac/x64/1.10/julia-1.10.3-mac64.tar.gz"
       },
       "darwin-arm64v8": {
-        "sha256": "c7392237725b54d2d145bf56ce362e502596ea4338523a91bf20ce02379cea80",
-        "url": "https://julialang-s3.julialang.org/bin/mac/aarch64/1.10/julia-1.10.2-macaarch64.tar.gz"
+        "sha256": "9ea32daa1bef34c8e48d6c76187f48fd2bf1054cc921fb8c374b737b51c9ffdd",
+        "url": "https://julialang-s3.julialang.org/bin/mac/aarch64/1.10/julia-1.10.3-macaarch64.tar.gz"
       },
       "freebsd-amd64": {
-        "sha256": "8789359ff6f4e2a606811044e522b89fba583c3b58044359c91b1512c5ab1bad",
-        "url": "https://julialang-s3.julialang.org/bin/freebsd/x64/1.10/julia-1.10.2-freebsd-x86_64.tar.gz"
+        "sha256": "0485b09bb107df62af6b25da4a00e9d87562abee16e6d71e5e74a7939ed226d4",
+        "url": "https://julialang-s3.julialang.org/bin/freebsd/x64/1.10/julia-1.10.3-freebsd-x86_64.tar.gz"
       },
       "i386": {
-        "sha256": "1699988a1733375991937b78689339e8b8117fb0a1700b54a2c984829ce646e6",
-        "url": "https://julialang-s3.julialang.org/bin/linux/x86/1.10/julia-1.10.2-linux-i686.tar.gz"
+        "sha256": "f13be078c5ee7c98fd6a39a537199c253543acbd49bedc243f397cd51c7aeb58",
+        "url": "https://julialang-s3.julialang.org/bin/linux/x86/1.10/julia-1.10.3-linux-i686.tar.gz"
+      },
+      "ppc64le": {
+        "sha256": "61e4398df70129ce8184a2b84a12e9d862e92f35b526cd0297b5f2791ca628ba",
+        "url": "https://julialang-s3.julialang.org/bin/linux/ppc64le/1.10/julia-1.10.3-linux-ppc64le.tar.gz"
       },
       "windows-amd64": {
-        "sha256": "5ba6bac56753f4fffe18390721816680f1fdf268b6bae920179a24fe5d588c4b",
-        "url": "https://julialang-s3.julialang.org/bin/winnt/x64/1.10/julia-1.10.2-win64.exe"
+        "sha256": "688e746f3d8700ba44a6cbc9ce04ccead4cd921f093af80259e10d0b0c5448c8",
+        "url": "https://julialang-s3.julialang.org/bin/winnt/x64/1.10/julia-1.10.3-win64.exe"
       },
       "windows-i386": {
-        "sha256": "c71c0c546bb20e6db98f4d3c8c497313342fb72078a7d23f5528db3f4bfe09ae",
-        "url": "https://julialang-s3.julialang.org/bin/winnt/x86/1.10/julia-1.10.2-win32.exe"
+        "sha256": "dd1335e3ca82295531fb09662fb0e11d25b121eac3ce7ef8b65eb6d46846ce4b",
+        "url": "https://julialang-s3.julialang.org/bin/winnt/x86/1.10/julia-1.10.3-win32.exe"
       }
     },
     "variants": [
@@ -46,7 +50,7 @@
       "windows/windowsservercore-ltsc2022",
       "windows/windowsservercore-1809"
     ],
-    "version": "1.10.2"
+    "version": "1.10.3"
   },
   "1.11": null,
   "1.11-rc": {
