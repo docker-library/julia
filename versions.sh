@@ -104,13 +104,15 @@ for version in "${versions[@]}"; do
 			"bookworm",
 			"bullseye",
 			if .arches | keys | any(startswith("alpine-")) then
+				"3.20",
 				"3.19",
-				"3.18"
+				empty
 				| "alpine" + .
 			else empty end,
 			if .arches | has("windows-amd64") then
 				"ltsc2022",
-				"1809"
+				"1809",
+				empty
 				| "windows/windowsservercore-" + .
 			else empty end
 		])
