@@ -55,50 +55,56 @@
   "1.11": null,
   "1.11-rc": {
     "arches": {
+      "alpine-amd64": {
+        "sha256": "ffebb0734c274c7f66e3b07d428869f731bf617a76d89aa7f1afa94808f7a1a0",
+        "url": "https://julialang-s3.julialang.org/bin/musl/x64/1.11/julia-1.11.0-rc1-musl-x86_64.tar.gz"
+      },
       "amd64": {
-        "sha256": "e92ae1cebd519180881770cc9ab903d39c49c6bcb9c8251861e6eac9acd566a6",
-        "url": "https://julialang-s3.julialang.org/bin/linux/x64/1.11/julia-1.11.0-beta2-linux-x86_64.tar.gz"
+        "sha256": "d9d7ca81087185abbb8a375c41f734deea6ea26aef2dc40d99467f8c5c7cc8d6",
+        "url": "https://julialang-s3.julialang.org/bin/linux/x64/1.11/julia-1.11.0-rc1-linux-x86_64.tar.gz"
       },
       "arm64v8": {
-        "sha256": "71f7c0135c3dae94c069b6ab391f8a4a05f857acea3f8d6da0352d00cb86d49b",
-        "url": "https://julialang-s3.julialang.org/bin/linux/aarch64/1.11/julia-1.11.0-beta2-linux-aarch64.tar.gz"
+        "sha256": "192e6c92969a84b8f76e113286b81b166fe04a7c5ff6c6b44a73e494c9f7f3a5",
+        "url": "https://julialang-s3.julialang.org/bin/linux/aarch64/1.11/julia-1.11.0-rc1-linux-aarch64.tar.gz"
       },
       "darwin-amd64": {
-        "sha256": "cfb7c11f8434b0e280a0deb1cf66c54891636c3705850fab9db017eacb576c90",
-        "url": "https://julialang-s3.julialang.org/bin/mac/x64/1.11/julia-1.11.0-beta2-mac64.tar.gz"
+        "sha256": "8161e5d94200a527f8af63da3b2dec0dc60af2ffdccc7b962b5b6d52671208da",
+        "url": "https://julialang-s3.julialang.org/bin/mac/x64/1.11/julia-1.11.0-rc1-mac64.tar.gz"
       },
       "darwin-arm64v8": {
-        "sha256": "f56a3873e6e2c6520caef5c80991d57ed8d6e0ed68ba42541f2e86301478d3b0",
-        "url": "https://julialang-s3.julialang.org/bin/mac/aarch64/1.11/julia-1.11.0-beta2-macaarch64.tar.gz"
+        "sha256": "e9123319e154e5bc2485028e20cf04bf97bb59b044198cfc0442868b6fc11307",
+        "url": "https://julialang-s3.julialang.org/bin/mac/aarch64/1.11/julia-1.11.0-rc1-macaarch64.tar.gz"
       },
       "freebsd-amd64": {
-        "sha256": "0d4ca5eadfabe854376a87a548c66bf089610ff80640ad78354f60247b540329",
-        "url": "https://julialang-s3.julialang.org/bin/freebsd/x64/1.11/julia-1.11.0-beta2-freebsd-x86_64.tar.gz"
+        "sha256": "a5f2b75f580b188ccf15aee2b9e736a143830479e339371862bd3a41e337a88d",
+        "url": "https://julialang-s3.julialang.org/bin/freebsd/x64/1.11/julia-1.11.0-rc1-freebsd-x86_64.tar.gz"
       },
       "i386": {
-        "sha256": "9d1e9f8a03ab6396acfc3e4d4edcff68907b20c53f252da6ea4573a72c39e361",
-        "url": "https://julialang-s3.julialang.org/bin/linux/x86/1.11/julia-1.11.0-beta2-linux-i686.tar.gz"
+        "sha256": "546aed60e6b6e5e5568562f299ddf1987d01f369f0243db0b8694ee83ced9809",
+        "url": "https://julialang-s3.julialang.org/bin/linux/x86/1.11/julia-1.11.0-rc1-linux-i686.tar.gz"
       },
       "ppc64le": {
-        "sha256": "e7f9bbe1843760e52a57e0d502990af3abb189f5a20ed292ce5d00db1d003088",
-        "url": "https://julialang-s3.julialang.org/bin/linux/ppc64le/1.11/julia-1.11.0-beta2-linux-ppc64le.tar.gz"
+        "sha256": "79870070dfc7b283691199da017f5db9dc86a8ed2260acfbb34f7e12fa9af8be",
+        "url": "https://julialang-s3.julialang.org/bin/linux/ppc64le/1.11/julia-1.11.0-rc1-linux-ppc64le.tar.gz"
       },
       "windows-amd64": {
-        "sha256": "e6d27f8a5819fd9e63ecb4ed19bed8a0c1ab719a5a6cf0f772c240eb44b46d68",
-        "url": "https://julialang-s3.julialang.org/bin/winnt/x64/1.11/julia-1.11.0-beta2-win64.exe"
+        "sha256": "77c6c17a940cd95c0e1bcc4ac3b6b2012cee2a7909dfd7f4494478f6b5742363",
+        "url": "https://julialang-s3.julialang.org/bin/winnt/x64/1.11/julia-1.11.0-rc1-win64.exe"
       },
       "windows-i386": {
-        "sha256": "ef7d521d467811d01e6591def89c4b9058eea6df4af757eab7ace9bf61e47ac1",
-        "url": "https://julialang-s3.julialang.org/bin/winnt/x86/1.11/julia-1.11.0-beta2-win32.exe"
+        "sha256": "19a636beb157925939ec3b50698c929052d24cbb218b2a39a752a7cd3a7dfe60",
+        "url": "https://julialang-s3.julialang.org/bin/winnt/x86/1.11/julia-1.11.0-rc1-win32.exe"
       }
     },
     "variants": [
       "bookworm",
       "bullseye",
+      "alpine3.20",
+      "alpine3.19",
       "windows/windowsservercore-ltsc2022",
       "windows/windowsservercore-1809"
     ],
-    "version": "1.11.0-beta2"
+    "version": "1.11.0-rc1"
   },
   "1.6": {
     "arches": {
