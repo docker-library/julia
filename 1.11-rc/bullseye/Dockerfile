@@ -23,7 +23,7 @@ ENV PATH $JULIA_PATH/bin:$PATH
 ENV JULIA_GPG 3673DF529D9049477F76B37566E3C7DC03D6E495
 
 # https://julialang.org/downloads/
-ENV JULIA_VERSION 1.11.0-rc1
+ENV JULIA_VERSION 1.11.0-rc2
 
 RUN set -eux; \
 	\
@@ -35,24 +35,24 @@ RUN set -eux; \
 	rm -rf /var/lib/apt/lists/*; \
 	\
 # https://julialang.org/downloads/#julia-command-line-version
-# https://julialang-s3.julialang.org/bin/checksums/julia-1.11.0-rc1.sha256
+# https://julialang-s3.julialang.org/bin/checksums/julia-1.11.0-rc2.sha256
 	arch="$(dpkg --print-architecture)"; \
 	case "$arch" in \
 		'amd64') \
-			url='https://julialang-s3.julialang.org/bin/linux/x64/1.11/julia-1.11.0-rc1-linux-x86_64.tar.gz'; \
-			sha256='d9d7ca81087185abbb8a375c41f734deea6ea26aef2dc40d99467f8c5c7cc8d6'; \
+			url='https://julialang-s3.julialang.org/bin/linux/x64/1.11/julia-1.11.0-rc2-linux-x86_64.tar.gz'; \
+			sha256='7416f969669761e3507ebb7b505075ca234a1785b438304c2b016f5ee00058ea'; \
 			;; \
 		'arm64') \
-			url='https://julialang-s3.julialang.org/bin/linux/aarch64/1.11/julia-1.11.0-rc1-linux-aarch64.tar.gz'; \
-			sha256='192e6c92969a84b8f76e113286b81b166fe04a7c5ff6c6b44a73e494c9f7f3a5'; \
+			url='https://julialang-s3.julialang.org/bin/linux/aarch64/1.11/julia-1.11.0-rc2-linux-aarch64.tar.gz'; \
+			sha256='947f48e9bf65217782b33be4ce0a9e4c07b5101121871da954c230bb63db9ab0'; \
 			;; \
 		'i386') \
-			url='https://julialang-s3.julialang.org/bin/linux/x86/1.11/julia-1.11.0-rc1-linux-i686.tar.gz'; \
-			sha256='546aed60e6b6e5e5568562f299ddf1987d01f369f0243db0b8694ee83ced9809'; \
+			url='https://julialang-s3.julialang.org/bin/linux/x86/1.11/julia-1.11.0-rc2-linux-i686.tar.gz'; \
+			sha256='611428bdc5bef1e96f6a86ee5064ef0e22e3612891b8a27e7a129742dad4fe97'; \
 			;; \
 		'ppc64el') \
-			url='https://julialang-s3.julialang.org/bin/linux/ppc64le/1.11/julia-1.11.0-rc1-linux-ppc64le.tar.gz'; \
-			sha256='79870070dfc7b283691199da017f5db9dc86a8ed2260acfbb34f7e12fa9af8be'; \
+			url='https://julialang-s3.julialang.org/bin/linux/ppc64le/1.11/julia-1.11.0-rc2-linux-ppc64le.tar.gz'; \
+			sha256='3ccbc68c091e6f52a490aeaac46ec24d528e1a41f4b817b7c715111dff169bbe'; \
 			;; \
 		*) \
 			echo >&2 "error: current architecture ($arch) does not have a corresponding Julia binary release"; \
