@@ -92,54 +92,5 @@
       "windows/windowsservercore-1809"
     ],
     "version": "1.11.0"
-  },
-  "1.6": {
-    "arches": {
-      "alpine-amd64": {
-        "sha256": "d71ccc5aa36cf691616a40bf6fb960fac5620ce53d2f90a95947b90dec509433",
-        "url": "https://julialang-s3.julialang.org/bin/musl/x64/1.6/julia-1.6.7-musl-x86_64.tar.gz"
-      },
-      "amd64": {
-        "sha256": "6c4522d595e4cbcd00157ac458a72f8aec01757053d2073f99daa39e442b2a36",
-        "url": "https://julialang-s3.julialang.org/bin/linux/x64/1.6/julia-1.6.7-linux-x86_64.tar.gz"
-      },
-      "arm32v7": {
-        "sha256": "67db7e1f4ad4b9676c26a4659ede8bb9a174346fe22b236f568028c63f02ed2a",
-        "url": "https://julialang-s3.julialang.org/bin/linux/armv7l/1.6/julia-1.6.7-linux-armv7l.tar.gz"
-      },
-      "arm64v8": {
-        "sha256": "8746d561cbe35e1b83739a84b2637a1d2348728b1d94d76629ad98ff76da6cea",
-        "url": "https://julialang-s3.julialang.org/bin/linux/aarch64/1.6/julia-1.6.7-linux-aarch64.tar.gz"
-      },
-      "darwin-amd64": {
-        "sha256": "63d617d677b0d271110623d9184c486a1c5d82042bb6432776053439601285ad",
-        "url": "https://julialang-s3.julialang.org/bin/mac/x64/1.6/julia-1.6.7-mac64.tar.gz"
-      },
-      "freebsd-amd64": {
-        "sha256": "a9f4b3e95dcdf3f8608b0c8e687c66a0df37ec7c2bd697f32faab03d042d388f",
-        "url": "https://julialang-s3.julialang.org/bin/freebsd/x64/1.6/julia-1.6.7-freebsd-x86_64.tar.gz"
-      },
-      "i386": {
-        "sha256": "d11edad41d2cf4784647e2ac9e304c189bed914cbf38ce4008c668ba789e6df9",
-        "url": "https://julialang-s3.julialang.org/bin/linux/x86/1.6/julia-1.6.7-linux-i686.tar.gz"
-      },
-      "windows-amd64": {
-        "sha256": "20a4bdca8314a6193472ee29f470ba02a1f8ffd7a803342896fcbbf61bf3d4c8",
-        "url": "https://julialang-s3.julialang.org/bin/winnt/x64/1.6/julia-1.6.7-win64.exe"
-      },
-      "windows-i386": {
-        "sha256": "aacf7c711343350535291f55511b7e5c7fc4337807898c16f4d026cbd11cffb4",
-        "url": "https://julialang-s3.julialang.org/bin/winnt/x86/1.6/julia-1.6.7-win32.exe"
-      }
-    },
-    "variants": [
-      "bookworm",
-      "bullseye",
-      "alpine3.20",
-      "alpine3.19",
-      "windows/windowsservercore-ltsc2022",
-      "windows/windowsservercore-1809"
-    ],
-    "version": "1.6.7"
   }
 }
