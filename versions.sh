@@ -110,6 +110,7 @@ for version in "${versions[@]}"; do
 				| "alpine" + .
 			else empty end,
 			if .arches | has("windows-amd64") then
+				"ltsc2025",
 				"ltsc2022",
 				"1809",
 				empty
