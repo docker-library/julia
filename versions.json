@@ -100,5 +100,50 @@
       "windows/windowsservercore-1809"
     ],
     "version": "1.11.4"
+  },
+  "1.12": null,
+  "1.12-rc": {
+    "arches": {
+      "amd64": {
+        "sha256": "be66effc43fc8b870d09d74b25dfe365ca32733c7b735df28f4a7fadfcff23d1",
+        "url": "https://julialang-s3.julialang.org/bin/linux/x64/1.12/julia-1.12.0-beta1-linux-x86_64.tar.gz"
+      },
+      "arm64v8": {
+        "sha256": "257b74706f1cd36d0c45beb921f9abb81129257fd6e957cc4cf779894e624a3f",
+        "url": "https://julialang-s3.julialang.org/bin/linux/aarch64/1.12/julia-1.12.0-beta1-linux-aarch64.tar.gz"
+      },
+      "darwin-amd64": {
+        "sha256": "2d6bf5e2e720442660cebfe5d117f42dbcf346ba47ad367b26fa5433753446d2",
+        "url": "https://julialang-s3.julialang.org/bin/mac/x64/1.12/julia-1.12.0-beta1-mac64.tar.gz"
+      },
+      "darwin-arm64v8": {
+        "sha256": "80bf6457bae1f12d807f2cbc26be8052062c98c4940ef8e37085caca44af2cf0",
+        "url": "https://julialang-s3.julialang.org/bin/mac/aarch64/1.12/julia-1.12.0-beta1-macaarch64.tar.gz"
+      },
+      "freebsd-amd64": {
+        "sha256": "436ebba9371813182885885fa5c0993bf5d5c410885863543d53be062157575e",
+        "url": "https://julialang-s3.julialang.org/bin/freebsd/x64/1.12/julia-1.12.0-beta1-freebsd-x86_64.tar.gz"
+      },
+      "i386": {
+        "sha256": "4e0ffe430529bfb127482d9965a1e711965435517739aed112898dee50ea1da4",
+        "url": "https://julialang-s3.julialang.org/bin/linux/x86/1.12/julia-1.12.0-beta1-linux-i686.tar.gz"
+      },
+      "windows-amd64": {
+        "sha256": "b9ec290ab3f5262553d30ebf852e9acf4f9c96ef415b9ef8005f1eadde807ca1",
+        "url": "https://julialang-s3.julialang.org/bin/winnt/x64/1.12/julia-1.12.0-beta1-win64.exe"
+      },
+      "windows-i386": {
+        "sha256": "5b12635fc1e8dc09be00654f4c82b86dca6a2293672b9f93ea87c8d609acd633",
+        "url": "https://julialang-s3.julialang.org/bin/winnt/x86/1.12/julia-1.12.0-beta1-win32.exe"
+      }
+    },
+    "variants": [
+      "bookworm",
+      "bullseye",
+      "windows/windowsservercore-ltsc2025",
+      "windows/windowsservercore-ltsc2022",
+      "windows/windowsservercore-1809"
+    ],
+    "version": "1.12.0-beta1"
   }
 }
