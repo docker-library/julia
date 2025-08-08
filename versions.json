@@ -43,8 +43,8 @@
       }
     },
     "variants": [
+      "trixie",
       "bookworm",
-      "bullseye",
       "alpine3.22",
       "alpine3.21",
       "windows/windowsservercore-ltsc2025",
@@ -96,8 +96,8 @@
       }
     },
     "variants": [
+      "trixie",
       "bookworm",
-      "bullseye",
       "alpine3.22",
       "alpine3.21",
       "windows/windowsservercore-ltsc2025",
@@ -146,8 +146,8 @@
       }
     },
     "variants": [
+      "trixie",
       "bookworm",
-      "bullseye",
       "alpine3.22",
       "alpine3.21",
       "windows/windowsservercore-ltsc2025",
