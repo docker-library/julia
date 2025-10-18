@@ -102,36 +102,36 @@
   "1.12": {
     "arches": {
       "amd64": {
-        "sha256": "6f87b8fcf5ef6a7371e8c79d948aedfa0ba28ce44447c446d7d82e70f0158da8",
-        "url": "https://julialang-s3.julialang.org/bin/linux/x64/1.12/julia-1.12.0-linux-x86_64.tar.gz"
+        "sha256": "7d2add9ee74ee2f12b5c268bc194794cc52ea440f8687fbab29db6afefbf69b7",
+        "url": "https://julialang-s3.julialang.org/bin/linux/x64/1.12/julia-1.12.1-linux-x86_64.tar.gz"
       },
       "arm64v8": {
-        "sha256": "0fb44de10c3a9da719b4962c2158fe4484d98377e521318b692e91a1bea5716b",
-        "url": "https://julialang-s3.julialang.org/bin/linux/aarch64/1.12/julia-1.12.0-linux-aarch64.tar.gz"
+        "sha256": "2e3d6ca07e251721fa3e0cd3460fc240e60f2a9bd97bae0ea2144f586da19297",
+        "url": "https://julialang-s3.julialang.org/bin/linux/aarch64/1.12/julia-1.12.1-linux-aarch64.tar.gz"
       },
       "darwin-amd64": {
-        "sha256": "373abf275872269f2ca97452e583a4aaf565e6f0572f7072b189aa3dc1b29429",
-        "url": "https://julialang-s3.julialang.org/bin/mac/x64/1.12/julia-1.12.0-mac64.tar.gz"
+        "sha256": "7dd841cd853ad64f5e90a4b459631b49ee388891ceaba81857f5b8959392c4b2",
+        "url": "https://julialang-s3.julialang.org/bin/mac/x64/1.12/julia-1.12.1-mac64.tar.gz"
       },
       "darwin-arm64v8": {
-        "sha256": "d1aaa44a9507c7eaa500d41460f06694bffd0ca366dbc23b38c09bb3290f52c8",
-        "url": "https://julialang-s3.julialang.org/bin/mac/aarch64/1.12/julia-1.12.0-macaarch64.tar.gz"
+        "sha256": "cc65620b71a725380e59d0e31dc0b4140f30229b70a4b8eec8e32c222bc54fc1",
+        "url": "https://julialang-s3.julialang.org/bin/mac/aarch64/1.12/julia-1.12.1-macaarch64.tar.gz"
       },
       "freebsd-amd64": {
-        "sha256": "2f320a8c3750c63f773473f22e5aef0ae38543b7fa4948b77eb81bed30bbb5c8",
-        "url": "https://julialang-s3.julialang.org/bin/freebsd/x64/1.12/julia-1.12.0-freebsd-x86_64.tar.gz"
+        "sha256": "75721c7ea2711684eb31111402f25e26eb771cec63bb8ac882c6eacdb9e715e3",
+        "url": "https://julialang-s3.julialang.org/bin/freebsd/x64/1.12/julia-1.12.1-freebsd-x86_64.tar.gz"
       },
       "i386": {
-        "sha256": "bef313ad70b3b3131a879118a388a878cb6e0aceab018f8dbf01de247d31f705",
-        "url": "https://julialang-s3.julialang.org/bin/linux/x86/1.12/julia-1.12.0-linux-i686.tar.gz"
+        "sha256": "99596fe3f139f52042cb5167034d26823f802dfe3d1333127e504109c03f0807",
+        "url": "https://julialang-s3.julialang.org/bin/linux/x86/1.12/julia-1.12.1-linux-i686.tar.gz"
       },
       "windows-amd64": {
-        "sha256": "1dd9ea0e4b61dfe5bc4d81e37e4cf19acb4f65b09699e3a4c65ba6ac727d7a3f",
-        "url": "https://julialang-s3.julialang.org/bin/winnt/x64/1.12/julia-1.12.0-win64.exe"
+        "sha256": "a0f8a9edf07f2904261df99d451c614bbbb98c123b36769cb774ed9ce753c993",
+        "url": "https://julialang-s3.julialang.org/bin/winnt/x64/1.12/julia-1.12.1-win64.exe"
       },
       "windows-i386": {
-        "sha256": "4c0371f054a67022a2235b2160b124b4ee620ca419617130e5ae3646501299e9",
-        "url": "https://julialang-s3.julialang.org/bin/winnt/x86/1.12/julia-1.12.0-win32.exe"
+        "sha256": "d5e58cdf478f29c580d7c8d437dbee334da85fb81fb7a4079423d2b9f0885111",
+        "url": "https://julialang-s3.julialang.org/bin/winnt/x86/1.12/julia-1.12.1-win32.exe"
       }
     },
     "variants": [
@@ -140,6 +140,6 @@
       "windows/windowsservercore-ltsc2025",
       "windows/windowsservercore-ltsc2022"
     ],
-    "version": "1.12.0"
+    "version": "1.12.1"
   }
 }
