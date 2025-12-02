@@ -141,5 +141,49 @@
       "windows/windowsservercore-ltsc2022"
     ],
     "version": "1.12.2"
+  },
+  "1.13": null,
+  "1.13-rc": {
+    "arches": {
+      "amd64": {
+        "sha256": "987aa3aad11e0b5c078dfdee7f8d54eeabdc10bcddd245bda18e28ab4de6119d",
+        "url": "https://julialang-s3.julialang.org/bin/linux/x64/1.13/julia-1.13.0-alpha2-linux-x86_64.tar.gz"
+      },
+      "arm64v8": {
+        "sha256": "c558a08f69d1984096d0bac825148cba2dd6b2eea3c5a3d8a5def2cd718af196",
+        "url": "https://julialang-s3.julialang.org/bin/linux/aarch64/1.13/julia-1.13.0-alpha2-linux-aarch64.tar.gz"
+      },
+      "darwin-amd64": {
+        "sha256": "d14484d4335cf3259eb62ea48095f18f9e8cb1de9f37c6961adc03aea4942e95",
+        "url": "https://julialang-s3.julialang.org/bin/mac/x64/1.13/julia-1.13.0-alpha2-mac64.tar.gz"
+      },
+      "darwin-arm64v8": {
+        "sha256": "c9273c63c065139f802c7f52d81c985eba08aed41e428ae377ff0b6786c29346",
+        "url": "https://julialang-s3.julialang.org/bin/mac/aarch64/1.13/julia-1.13.0-alpha2-macaarch64.tar.gz"
+      },
+      "freebsd-amd64": {
+        "sha256": "8d530bb48af0ba99467b00236e1c0e10872302a729b40d719a241b2ec9885393",
+        "url": "https://julialang-s3.julialang.org/bin/freebsd/x64/1.13/julia-1.13.0-alpha2-freebsd-x86_64.tar.gz"
+      },
+      "i386": {
+        "sha256": "15b15af06b603efa0523e2f1b19cacaefcddda13595906c276ddec0b3194c0b2",
+        "url": "https://julialang-s3.julialang.org/bin/linux/x86/1.13/julia-1.13.0-alpha2-linux-i686.tar.gz"
+      },
+      "windows-amd64": {
+        "sha256": "ec84bd651c739436b2ab397f4a156ed269030f277d075031104eecbf6904079a",
+        "url": "https://julialang-s3.julialang.org/bin/winnt/x64/1.13/julia-1.13.0-alpha2-win64.exe"
+      },
+      "windows-i386": {
+        "sha256": "ef006e89ce706ef94e2fdba19aa7a153523f927e0e2ae4eea5dc00953d4261a5",
+        "url": "https://julialang-s3.julialang.org/bin/winnt/x86/1.13/julia-1.13.0-alpha2-win32.exe"
+      }
+    },
+    "variants": [
+      "trixie",
+      "bookworm",
+      "windows/windowsservercore-ltsc2025",
+      "windows/windowsservercore-ltsc2022"
+    ],
+    "version": "1.13.0-alpha2"
   }
 }
