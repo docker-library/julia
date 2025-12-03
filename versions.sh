@@ -12,6 +12,9 @@ else
 fi
 versions=( "${versions[@]%/}" )
 
+# TODO scrape LTS version track from somewhere so we can rename the "1.x" folder of LTS to just "lts" and have this script deal with it completely
+# see also https://github.com/docker-library/julia/issues/92
+
 # https://julialang.org/downloads/#json_release_feed
 # https://julialang-s3.julialang.org/bin/versions.json
 # https://julialang-s3.julialang.org/bin/versions-schema.json
@@ -21,13 +24,9 @@ juliaVersions="$(
 			to_entries[]
 			| .key as $version
 			| .value
-			| (
-				($version | sub("^(?<m>[0-9]+[.][0-9]+).*$"; "\(.m)"))
-				+ if .stable then "" else "-rc" end
-			) as $major
 			| {
-				version: $version,
-				major: $major,
+				$version,
+				stable,
 				arches: (.files | map(
 					# map values from the julia versions-schema.json to bashbrew architecture values
 					# (plus some extra fiddly bits for Alpine)
@@ -64,42 +63,58 @@ juliaVersions="$(
 					} end
 				) | from_entries),
 			}
-		] | sort_by([.major, .version] | map(split("[.-]"; "") | map(if test("^[0-9]+$") then tonumber else . end)))
+		]
+
+		| (
+			def scan_version:
+				[
+					scan("[0-9]+|[^0-9]+|^$")
+					| tonumber? // .
+				]
+			;
+
+			sort_by(.version | scan_version)
+			| reverse
+
+			| first(.[] | select(.stable) | .version) as $stable
+			| first(.[] | select(.stable | not) | .version) as $rc
+			| if ($stable | scan_version) >= ($rc | scan_version) then
+				# if latest "stable" is newer than the latest pre-release, remove *all* the pre-releases
+				map(select(.stable))
+			else . end
+		)
 	'
 )"
 
 for version in "${versions[@]}"; do
-	rcVersion="${version%-rc}"
-	export version rcVersion
+	export version
 
 	if \
 		! doc="$(jq <<<"$juliaVersions" -ce '
-			[ .[] | select(.major == env.version) ][-1]
+			first(.[] | select(
+				if IN(env.version; "stable", "rc") then
+					.stable == (env.version == "stable")
+				else
+					.stable and (
+						.version
+						| startswith(env.version + ".")
+					)
+				end
+			))
 		')" \
 		|| ! fullVersion="$(jq <<<"$doc" -r '.version')" \
 		|| [ -z "$fullVersion" ] \
 	; then
 		echo >&2 "warning: cannot find full version for $version"
+		json="$(jq <<<"$json" -c '.[env.version] = null')"
 		continue
 	fi
 
 	echo "$version: $fullVersion"
 
-	if [ "$rcVersion" != "$version" ] && gaFullVersion="$(jq <<<"$json" -er '.[env.rcVersion] | if . then .version else empty end')"; then
-		# Julia pre-releases have always only been for .0, so if our pre-release now has a relevant GA, it should go away 👀
-		# $ wget -qO- 'https://julialang-s3.julialang.org/bin/versions.json' | jq 'keys_unsorted[]' -r | grep -E '[^0]-'
-		# just in case, we'll also do a version comparison to make sure we don't have a pre-release that's newer than the relevant GA
-		latestVersion="$({ echo "$fullVersion"; echo "$gaFullVersion"; } | sort -V | tail -1)"
-		if [[ "$fullVersion" == "$gaFullVersion"* ]] || [ "$latestVersion" = "$gaFullVersion" ]; then
-			# "x.y.z-rc1" == x.y.z*
-			json="$(jq <<<"$json" -c 'del(.[env.version])')"
-			continue
-		fi
-	fi
-
 	json="$(jq <<<"$json" -c --argjson doc "$doc" '.[env.version] = (
 		$doc
-		| del(.major)
+		| del(.stable)
 		| .variants = ([
 			"trixie",
 			"bookworm",
@@ -109,19 +124,23 @@ for version in "${versions[@]}"; do
 				empty
 				| "alpine" + .
 			else empty end,
-			if .arches | has("windows-amd64") then
+			if .arches | has("windows-amd64") then # TODO "windows-arm64v8" someday? 👀
 				"ltsc2025",
 				"ltsc2022",
 				empty
-				| "windows/windowsservercore-" + .
+				| "windows/servercore-" + .
 			else empty end
 		])
 	)')"
-
-	# make sure pre-release versions have a placeholder for GA
-	if [ "$version" != "$rcVersion" ]; then
-		json="$(jq <<<"$json" -c '.[env.rcVersion] //= null')"
-	fi
 done
 
-jq <<<"$json" -S . > versions.json
+jq <<<"$json" '
+	to_entries
+	| sort_by(
+		.key as $k
+		# match the order on https://julialang.org/downloads/manual-downloads/
+		| [ "stable", "lts" ] | (index($k) // length + ([ "rc" ] | (index($k) // -1) + 1)), $k
+		# (this is a compressed clone of https://github.com/docker-library/meta-scripts/blob/af716438af4178d318a03f4144668d76c9c8222f/sort.jq#L29-L52)
+	)
+	| from_entries
+' > versions.json

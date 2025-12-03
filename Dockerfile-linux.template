@@ -1,4 +1,6 @@
 {{
+	include "shared"
+	;
 	def is_alpine:
 		env.variant | startswith("alpine")
 	;
@@ -11,6 +13,7 @@
 				arm64v8: "aarch64",
 				i386: "x86",
 				ppc64le: "ppc64le",
+				riscv64: "riscv64",
 				s390x: "s390x",
 			}
 		else
@@ -22,15 +25,14 @@
 				i386: "i386",
 				mips64le: "mips64el",
 				ppc64le: "ppc64el",
+				riscv64: "riscv64",
 				s390x: "s390x",
 			}
 		end
 -}}
-{{ if is_alpine then ( -}}
-FROM alpine:{{ env.variant | ltrimstr("alpine") }}
-{{ ) else ( -}}
-FROM debian:{{ env.variant }}-slim
+FROM {{ from(env.variant) }}
 
+{{ if is_alpine then "" else ( -}}
 RUN set -eux; \
 	apt-get update; \
 	apt-get install -y --no-install-recommends \
@@ -39,8 +41,8 @@ RUN set -eux; \
 		curl \
 	; \
 	rm -rf /var/lib/apt/lists/*
-{{ ) end -}}
 
+{{ ) end -}}
 ENV JULIA_PATH /usr/local/julia
 ENV PATH $JULIA_PATH/bin:$PATH
 
