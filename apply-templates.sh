@@ -40,32 +40,27 @@ for version; do
 	variants="$(jq -r '.[env.version].variants | map(@sh) | join(" ")' versions.json)"
 	eval "variants=( $variants )"
 
-	for dir in "${variants[@]}"; do
-		mkdir -p "$version/$dir"
-
-		variant="$(basename "$dir")" # "bookworm", "windowsservercore-1809", etc
+	for variant in "${variants[@]}"; do
 		export variant
 
-		case "$dir" in
+		mkdir -p "$version/$variant"
+
+		case "$variant" in
 			windows/*)
-				windowsVariant="${variant%%-*}" # "windowsservercore", "nanoserver"
-				windowsRelease="${variant#$windowsVariant-}" # "ltsc2022", "1809", etc
-				windowsVariant="${windowsVariant#windows}" # "servercore", "nanoserver"
-				export windowsVariant windowsRelease
-				template="Dockerfile-windows-$windowsVariant.template"
+				template='Dockerfile-windows.template'
 				;;
 
 			*)
 				template='Dockerfile-linux.template'
-				cp -a docker-entrypoint.sh "$version/$dir/"
+				cp -a docker-entrypoint.sh "$version/$variant/"
 				;;
 		esac
 
-		echo "processing $version/$dir ..."
+		echo "processing $version/$variant ..."
 
 		{
 			generated_warning
 			gawk -f "$jqt" "$template"
-		} > "$version/$dir/Dockerfile"
+		} > "$version/$variant/Dockerfile"
 	done
 done
