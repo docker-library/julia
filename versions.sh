@@ -119,8 +119,8 @@ for version in "${versions[@]}"; do
 			"trixie",
 			"bookworm",
 			if .arches | keys | any(startswith("alpine-")) then
+				"3.23",
 				"3.22",
-				"3.21",
 				empty
 				| "alpine" + .
 			else empty end,
