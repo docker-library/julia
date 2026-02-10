@@ -95,6 +95,53 @@
       "windows/servercore-ltsc2022"
     ]
   },
+  "1.11": {
+    "version": "1.11.9",
+    "arches": {
+      "amd64": {
+        "url": "https://julialang-s3.julialang.org/bin/linux/x64/1.11/julia-1.11.9-linux-x86_64.tar.gz",
+        "sha256": "b36363356d7a05eaf8b7b9e7a91c710f6bd3d2940be4d4e6d14b9a9f2927de35"
+      },
+      "i386": {
+        "url": "https://julialang-s3.julialang.org/bin/linux/x86/1.11/julia-1.11.9-linux-i686.tar.gz",
+        "sha256": "74df5031a93bce45e30582a71bf70f4ba983ff42f6eaf54eb9effb6e124604ca"
+      },
+      "arm64v8": {
+        "url": "https://julialang-s3.julialang.org/bin/linux/aarch64/1.11/julia-1.11.9-linux-aarch64.tar.gz",
+        "sha256": "a2071f0654d1d6af4381cba650b9f790f5f8bb7a570e51e378de8bcf67ff623e"
+      },
+      "ppc64le": {
+        "url": "https://julialang-s3.julialang.org/bin/linux/ppc64le/1.11/julia-1.11.9-linux-ppc64le.tar.gz",
+        "sha256": "3c25d5bf70d65da5859d65b34d17646dd1b3f1b50ea2090d13e63171d6dbf861"
+      },
+      "darwin-amd64": {
+        "url": "https://julialang-s3.julialang.org/bin/mac/x64/1.11/julia-1.11.9-mac64.tar.gz",
+        "sha256": "f7b49c3ddb22389dfab2c1d8d26fa4bef540ee8195650d8c502daa9c1c2edf92"
+      },
+      "darwin-arm64v8": {
+        "url": "https://julialang-s3.julialang.org/bin/mac/aarch64/1.11/julia-1.11.9-macaarch64.tar.gz",
+        "sha256": "ed903d0d337036fc3a68414bfca5f73107af162678ef76b52e42e84e25f33bd7"
+      },
+      "windows-amd64": {
+        "url": "https://julialang-s3.julialang.org/bin/winnt/x64/1.11/julia-1.11.9-win64.exe",
+        "sha256": "747ff8983fa183e0e35e618c9212815cba0b3ad29a44eaac039acc755a0d91b6"
+      },
+      "windows-i386": {
+        "url": "https://julialang-s3.julialang.org/bin/winnt/x86/1.11/julia-1.11.9-win32.exe",
+        "sha256": "cf083fe27e5dd9293175708625bb5d911250e29a6b7e8ecd95852228ffc6d66f"
+      },
+      "freebsd-amd64": {
+        "url": "https://julialang-s3.julialang.org/bin/freebsd/x64/1.11/julia-1.11.9-freebsd-x86_64.tar.gz",
+        "sha256": "275c0bc46f50b58a584a30f29fda20b757b8f6a1dff4cf664b0168724ff3d373"
+      }
+    },
+    "variants": [
+      "trixie",
+      "bookworm",
+      "windows/servercore-ltsc2025",
+      "windows/servercore-ltsc2022"
+    ]
+  },
   "rc": {
     "version": "1.13.0-beta2",
     "arches": {
