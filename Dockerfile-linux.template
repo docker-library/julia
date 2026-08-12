@@ -46,9 +46,16 @@ RUN set -eux; \
 ENV JULIA_PATH /usr/local/julia
 ENV PATH $JULIA_PATH/bin:$PATH
 
-# https://julialang.org/juliareleases.asc
+# https://julialang.org/assets/juliareleases.asc
 # Julia (Binary signing key) <buildbot@julialang.org>
-ENV JULIA_GPG 3673DF529D9049477F76B37566E3C7DC03D6E495
+ENV JULIA_GPG {{
+	if IN(.version; "1.10.11", "1.11.9", "1.12.6", "1.13.0-rc1") then
+		"3673DF529D9049477F76B37566E3C7DC03D6E495"
+	else
+		# https://github.com/JuliaLang/www.julialang.org/pull/2567#issuecomment-5267131777
+		"64B779A570972FFF7BFC2B54EAD471E1A1F2C10A"
+	end
+}}
 
 # https://julialang.org/downloads/
 ENV JULIA_VERSION {{ .version }}

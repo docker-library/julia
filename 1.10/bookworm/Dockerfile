@@ -18,7 +18,7 @@ RUN set -eux; \
 ENV JULIA_PATH /usr/local/julia
 ENV PATH $JULIA_PATH/bin:$PATH
 
-# https://julialang.org/juliareleases.asc
+# https://julialang.org/assets/juliareleases.asc
 # Julia (Binary signing key) <buildbot@julialang.org>
 ENV JULIA_GPG 3673DF529D9049477F76B37566E3C7DC03D6E495
 
