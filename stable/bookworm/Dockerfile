@@ -23,7 +23,7 @@ ENV PATH $JULIA_PATH/bin:$PATH
 ENV JULIA_GPG 64B779A570972FFF7BFC2B54EAD471E1A1F2C10A
 
 # https://julialang.org/downloads/
-ENV JULIA_VERSION 1.13.0
+ENV JULIA_VERSION 1.13.1
 
 RUN set -eux; \
 	\
@@ -35,20 +35,20 @@ RUN set -eux; \
 	rm -rf /var/lib/apt/lists/*; \
 	\
 # https://julialang.org/downloads/#julia-command-line-version
-# https://julialang-s3.julialang.org/bin/checksums/julia-1.13.0.sha256
+# https://julialang-s3.julialang.org/bin/checksums/julia-1.13.1.sha256
 	arch="$(dpkg --print-architecture)"; \
 	case "$arch" in \
 		'amd64') \
-			url='https://julialang-s3.julialang.org/bin/linux/x64/1.13/julia-1.13.0-linux-x86_64.tar.gz'; \
-			sha256='8975da61c128a5e5ded3e719e868da8c8781deb7ad7913d37fb99be02a81904b'; \
+			url='https://julialang-s3.julialang.org/bin/linux/x64/1.13/julia-1.13.1-linux-x86_64.tar.gz'; \
+			sha256='0f2e18c8dea60a2c8711d089cd9612f7a8df394b89e5208096fe5867647e0908'; \
 			;; \
 		'i386') \
-			url='https://julialang-s3.julialang.org/bin/linux/x86/1.13/julia-1.13.0-linux-i686.tar.gz'; \
-			sha256='811a3d82afd11b6a069c0a49111a98eeaf9a107139c188ff3d4cba5721ae8e5d'; \
+			url='https://julialang-s3.julialang.org/bin/linux/x86/1.13/julia-1.13.1-linux-i686.tar.gz'; \
+			sha256='8bd3f8f20c0fd346b31ba5204f50d770c21abc0dba6f37b7ad7c02faa05033a6'; \
 			;; \
 		'arm64') \
-			url='https://julialang-s3.julialang.org/bin/linux/aarch64/1.13/julia-1.13.0-linux-aarch64.tar.gz'; \
-			sha256='6cd4a3e4baa2dc5f55638c28e9835fc294f41c78ada4a740dc408436778ab8b4'; \
+			url='https://julialang-s3.julialang.org/bin/linux/aarch64/1.13/julia-1.13.1-linux-aarch64.tar.gz'; \
+			sha256='78341862e24734ea1c2fa8795183c52627c23a99aba5aa1d0ec840edecec5ce0'; \
 			;; \
 		*) \
 			echo >&2 "error: current architecture ($arch) does not have a corresponding Julia binary release"; \
