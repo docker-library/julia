@@ -1,7 +1,7 @@
 include "shared";
 
-to_entries
-| map_values(select(.)) # ignore nulls ("rc" post-GA)
+map_values(select(.)) # ignore nulls ("rc" post-GA)
+| to_entries
 
 | (
 	# our entries are in precedence order, so loop over them in order and assign "generic" tags like "1" to the first entry that might use them
