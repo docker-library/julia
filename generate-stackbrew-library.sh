@@ -17,7 +17,7 @@ getArches() {
 		--arg repo "$repo" '
 			include "shared";
 			[
-				from(.[].variants[])
+				from(.[].variants[]?) # ? to fix "Cannot iterate over null" when RCs are removed
 				| select(startswith($repo + ":") or index("/") | not)
 			]
 			| unique[]
