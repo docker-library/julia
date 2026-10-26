@@ -133,39 +133,39 @@
     ]
   },
   "rc": {
-    "version": "1.14.0-alpha1",
+    "version": "1.14.0-alpha2",
     "arches": {
       "amd64": {
-        "url": "https://julialang-s3.julialang.org/bin/linux/x64/1.14/julia-1.14.0-alpha1-linux-x86_64.tar.gz",
-        "sha256": "8cc30c86414dacbe58963eaf3e23d1605334a670f40051ef5a0de0619c9c252c"
+        "url": "https://julialang-s3.julialang.org/bin/linux/x64/1.14/julia-1.14.0-alpha2-linux-x86_64.tar.gz",
+        "sha256": "ca26d7fd064aea4f0d28561e08159957895a56b7e3bb670cc23701c28dce2a61"
       },
       "i386": {
-        "url": "https://julialang-s3.julialang.org/bin/linux/x86/1.14/julia-1.14.0-alpha1-linux-i686.tar.gz",
-        "sha256": "c505a56df24c443a90b2ffaced206e548a2e9e92d338a2323bb3552b083e4c10"
-      },
-      "darwin-amd64": {
-        "url": "https://julialang-s3.julialang.org/bin/mac/x64/1.14/julia-1.14.0-alpha1-mac64.tar.gz",
-        "sha256": "ac6d986b4d6d18fb7b615dcb5521ed48be6de838be64835ca319de537bd870ab"
-      },
-      "darwin-arm64v8": {
-        "url": "https://julialang-s3.julialang.org/bin/mac/aarch64/1.14/julia-1.14.0-alpha1-macaarch64.tar.gz",
-        "sha256": "7183594516ad0ce2fd8dc9286cf8a03b7fe43c2d4d53951ac1f16b3c11cd5a73"
-      },
-      "windows-amd64": {
-        "url": "https://julialang-s3.julialang.org/bin/winnt/x64/1.14/julia-1.14.0-alpha1-win64.exe",
-        "sha256": "fb7a76d32820623436da48cb74cc88ed92d1b967db5bc9e5d4253753fa9cb9cd"
-      },
-      "windows-i386": {
-        "url": "https://julialang-s3.julialang.org/bin/winnt/x86/1.14/julia-1.14.0-alpha1-win32.exe",
-        "sha256": "40515eb190986d587eee7e75d3c24c4c2d143cdc063aabfcb5d45874f0482ca6"
-      },
-      "freebsd-amd64": {
-        "url": "https://julialang-s3.julialang.org/bin/freebsd/x64/1.14/julia-1.14.0-alpha1-freebsd-x86_64.tar.gz",
-        "sha256": "2f02fa492fe62cb5b626fd905748f706c366a3dadb64a07a976c10def71af493"
+        "url": "https://julialang-s3.julialang.org/bin/linux/x86/1.14/julia-1.14.0-alpha2-linux-i686.tar.gz",
+        "sha256": "cc7100928f197e539cc4115dfdbd04c28441ef5dd78e2bef81fa677378ba408c"
       },
       "arm64v8": {
-        "url": "https://julialang-s3.julialang.org/bin/linux/aarch64/1.14/julia-1.14.0-alpha1-linux-aarch64.tar.gz",
-        "sha256": "c408dd0fa1bbb1ff475226ef7c5c9f0b65e3991306085882b1e2f86c453101c7"
+        "url": "https://julialang-s3.julialang.org/bin/linux/aarch64/1.14/julia-1.14.0-alpha2-linux-aarch64.tar.gz",
+        "sha256": "9b30e32e56361b7a4ae507449ace6c996d45eed7500528944564e1770848fe28"
+      },
+      "darwin-amd64": {
+        "url": "https://julialang-s3.julialang.org/bin/mac/x64/1.14/julia-1.14.0-alpha2-mac64.tar.gz",
+        "sha256": "6b3b359d68887ce8051eef47f013684b23b4e8db449782191c47f7e828d500a9"
+      },
+      "darwin-arm64v8": {
+        "url": "https://julialang-s3.julialang.org/bin/mac/aarch64/1.14/julia-1.14.0-alpha2-macaarch64.tar.gz",
+        "sha256": "3038ba10af3496d8525789b815b83bd7a6a2a98d974a59700b79edc674c10309"
+      },
+      "windows-amd64": {
+        "url": "https://julialang-s3.julialang.org/bin/winnt/x64/1.14/julia-1.14.0-alpha2-win64.exe",
+        "sha256": "68f49717241692c0c7022d4e3fa567af4659e723e0c5b04d24668a98f30aa46c"
+      },
+      "windows-i386": {
+        "url": "https://julialang-s3.julialang.org/bin/winnt/x86/1.14/julia-1.14.0-alpha2-win32.exe",
+        "sha256": "ae73367a733732f071f0e18e55db27e62dcd69205fb8599e7b11be7cc7fea671"
+      },
+      "freebsd-amd64": {
+        "url": "https://julialang-s3.julialang.org/bin/freebsd/x64/1.14/julia-1.14.0-alpha2-freebsd-x86_64.tar.gz",
+        "sha256": "071f7286310f08ad59dd257a5a201acebba8ff8b845290013b8341a9f6e4339d"
       }
     },
     "variants": [
